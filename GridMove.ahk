@@ -36,7 +36,7 @@
 
   ;;end of options
 
-  ScriptVersion = 1.19.72-win10fix
+  ScriptVersion = 1.2
 
   ; Detect Windows 10
   if % substr(a_osversion, 1, 2) = 10
