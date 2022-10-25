@@ -1,15 +1,18 @@
-15.09.2016 - Fix WinMove for Windows 10.
-------------------------
+# GridMove Fix 2022
 
-GridMove
-========
+## list
+
+1. fix path error in compile.bat
+2. fix GridMove tray `Show Grid` commnad
+3. remove file for development
+
+## GridMove
 
 GridMove is a Windows program that aims at making windows management easier. It helps you with this task by defining a visual grid on your desktop, to which you can easily snap windows. It is built with [AutoHotkey](http://www.autohotkey.com "AutoHotKey"), a scripting language for desktop automation for Windows.
 
 More information at [GridMove's homepage](http://jgpaiva.dcmembers.com/gridmove.html).
 
-Source code organization
-------------------------
+# Source code organization
 
 * GridMove.ahk - Main program, most of the functionality
 * files.ahk - Configuration and Grid parsing
