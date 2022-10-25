@@ -1,1 +1,1 @@
-"C:\Programs\AutoHotkey\Compiler\Ahk2Exe.exe" /in GridMoveP1.ahk /out GridMove.exe /icon Images\GridMove.ico
+"C:\Program Files\AutoHotkey\Compiler\Ahk2Exe.exe" /in ..\GridMove.ahk /out ..\GridMove.exe /icon ..\Images\GridMove.ico
