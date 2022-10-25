@@ -1118,7 +1118,7 @@ Options_ShowGrid:
   else
   {
     ShowGroupsFlag := True
-    Menu,options_menu, Check, %tray_show%
+    Menu,options_menu, Check, %tray_showgrid%
     Menu,options_menu,Enable, %tray_shownumbers%
   }
   GoSub, WriteIni
