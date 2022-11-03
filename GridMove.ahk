@@ -30,7 +30,7 @@
   ColorTheme=orange
   Language=EN
   NoTrayIcon:=False
-  FirstRun:=True
+  FirstRun:=False
 
   ;Registered=quebec
 
