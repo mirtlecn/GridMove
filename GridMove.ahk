@@ -6,18 +6,18 @@
   ;;options:
   MButtonDrag := True ;to be able to drag a window using the 3rd mouse button
   LButtonDrag:=True ;to be able to drag a window by its title
-  EdgeDrag := True ;to be able to bring the grid up when dragging a window to the edge
+  EdgeDrag := False ;to be able to bring the grid up when dragging a window to the edge
   EdgeTime := 500
   ShowGroupsFlag := True ;configures the showing or not of the groups
   ShowNumbersFlag := True ;configures the showing or not of the numbers
   TitleSize := 100
   GridName = Grids/3 Part.grid
-  GridOrder = 2 Part Vertical,3 Part,EdgeGrid,Dual Screen
-  UseCommand := True
+  GridOrder = 2 Part Vertical,3 Part,EdgeGrid
+  UseCommand := False
   CommandHotkey = #g
   UseFastMove := True
   FastMoveModifiers = #
-  Exceptions = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
+  Exceptions = QuarkXPress
   MButtonExceptions = inkscape.exe 
   MButtonTimeout = 0.3
   Transparency = 200
