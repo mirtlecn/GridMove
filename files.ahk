@@ -183,7 +183,7 @@ return
 firstRun:
     FirstRun:=false
     GoSub,setlanguage
-    GoSub,AboutHelp
+    ; GoSub,AboutHelp
     GoSub,WriteIni
     msgbox,64,%info_firstrun_title%,%info_firstrun%
     settimer, helper,100
@@ -234,6 +234,8 @@ WriteIni:
 Return   
    
 ;***************************************************************About / help GUI
+/*
+
 AboutHelp:
   if mutex
     return
@@ -323,6 +325,8 @@ AboutHelp:
   else
     Gui, 3:show,,GridMove V%ScriptVersion% by jgpaiva
 return
+*/
+
 
 Post:
   Run,http://www.donationcoder.com/Forums/bb/index.php?topic=3824

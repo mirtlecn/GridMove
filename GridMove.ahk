@@ -186,8 +186,8 @@ createTrayMenus()
     Traytip,GridMove,Creating the templates menu,10
 
   ;;tray menu:
-  Menu,Tray, Add, %tray_help%, AboutHelp
-  Menu,Tray, Default, %tray_help%
+  ; Menu,Tray, Add, %tray_help%, AboutHelp
+  ; Menu,Tray, Default, %tray_help%
   Menu,Tray, Tip, GridMove V%ScriptVersion%
   ; Menu,Tray, Add, %tray_updates%, EnableAutoUpdate
   Menu,Tray, Add, %tray_ignore%, AddToIgnore

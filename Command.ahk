@@ -42,7 +42,7 @@ Drop_Command:
     Else If (FirstNumber = "A")
     {
       GoSub, Command_Hide
-      gosub,AboutHelp
+      ; gosub,AboutHelp
       return
     }
     Else If (FirstNumber = "V")
@@ -364,7 +364,7 @@ WinHotkeysMeta:
     Else If (FirstNumber = "A")
     {
       GoSub, Command_Hide
-      gosub,AboutHelp
+      ; gosub,AboutHelp
       return
     }
     Else If (FirstNumber = "V")
