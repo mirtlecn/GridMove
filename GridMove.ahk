@@ -189,7 +189,7 @@ createTrayMenus()
   Menu,Tray, Add, %tray_help%, AboutHelp
   Menu,Tray, Default, %tray_help%
   Menu,Tray, Tip, GridMove V%ScriptVersion%
-  Menu,Tray, Add, %tray_updates%, EnableAutoUpdate
+  ; Menu,Tray, Add, %tray_updates%, EnableAutoUpdate
   Menu,Tray, Add, %tray_ignore%, AddToIgnore
   
   if(Registered<>"quebec")
@@ -1539,19 +1539,23 @@ StartWithWindowsToggle:
       Menu,Tray,UnCheck,%tray_windows%
 return
 
-EnableAutoUpdate:
-  ; Register with DcUpdater and check for updates. 
-  ; When no updates are found nothing is displayed.
-  ; make sure the dcuhelper.exe is in a subdirectory called 'dcuhelper' of this script's location.
-  cmdParams = -ri    ;r = register app, i = check for updates
-  uniqueID = GridMove ;anything allowed
-  dcuHelperDir = %A_ScriptDir%
-  IfExist, %dcuHelperDir%\dcuhelper.exe
-  {
-    OutputDebug, %A_Now%: %dcuHelperDir%\dcuhelper.exe %cmdParams% "%uniqueID%" "%A_ScriptDir%" . -shownew -nothingexit
-    Run, %dcuHelperDir%\dcuhelper.exe %cmdParams% "%uniqueID%" "%A_ScriptDir%" Updater ,,Hide
-  }
-return
+
+ ; Disable Update for now  --- 
+; EnableAutoUpdate:
+;   ; Register with DcUpdater and check for updates. 
+;   ; When no updates are found nothing is displayed.
+;   ; make sure the dcuhelper.exe is in a subdirectory called 'dcuhelper' of this script's location.
+;   cmdParams = -ri    ;r = register app, i = check for updates
+;   uniqueID = GridMove ;anything allowed
+;   dcuHelperDir = %A_ScriptDir%
+;   IfExist, %dcuHelperDir%\dcuhelper.exe
+;   {
+;     OutputDebug, %A_Now%: %dcuHelperDir%\dcuhelper.exe %cmdParams% "%uniqueID%" "%A_ScriptDir%" . -shownew -nothingexit
+;     Run, %dcuHelperDir%\dcuhelper.exe %cmdParams% "%uniqueID%" "%A_ScriptDir%" Updater ,,Hide
+;   }
+; return
+; Disable Update for now ----
+
 
 AddToIgnore:
   ;add selected window to ignore list
