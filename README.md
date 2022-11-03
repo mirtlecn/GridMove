@@ -1,8 +1,8 @@
 # GridMove Fix 2022
 
-1. fix path error in `compile.bat`
+1. fix path error in compile.bat
 2. fix GridMove tray `Show Grid` commnad
-3. remove files for development
+3. remove filess for development
 
 ## GridMove
 
