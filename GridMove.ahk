@@ -12,7 +12,7 @@
   ShowNumbersFlag := True ;configures the showing or not of the numbers
   TitleSize := 100
   GridName = Grids/3 Part.grid
-  GridOrder = 2 Part Vertical,3 Part,EdgeGrid
+  GridOrder = 2 Part Vertical,EdgeGrid
   UseCommand := False
   CommandHotkey = !g
   UseFastMove := True
