@@ -321,33 +321,32 @@ AboutHelp:
 return
 */
 
-
-Post:
-  Run,http://www.donationcoder.com/Forums/bb/index.php?topic=3824
-  GoSub,3GuiCLOSE 
-return
+; Post:
+;   Run,http://www.donationcoder.com/Forums/bb/index.php?topic=3824
+;   GoSub,3GuiCLOSE 
+; return
   
-MainSite:
-  Run,http://www.donationcoder.com/
-  GoSub,3Guiclose 
-return
+; MainSite:
+;   Run,http://www.donationcoder.com/
+;   GoSub,3Guiclose 
+; return
   
-DonateSite:
-  Run,http://www.donationcoder.com/Donate/index.html
-  GoSub,3Guiclose
-return
+; DonateSite:
+;   Run,http://www.donationcoder.com/Donate/index.html
+;   GoSub,3Guiclose
+; return
   
-DonateAuthor:
-  Run,https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jgpaiva`%40gmail`%2ecom&item_name`=donate`%20to`%20jgpaiva&item_number`=donationcoder`%2ecom&no_shipping=1&cn=Please`%20drop`%20me`%20a`%20line`%20`%3aD&tax`=0&currency_code=EUR&bn=PP`%2dDonationsBF&charset=UTF`%2d8
-  GoSub,3Guiclose
-return  
+; DonateAuthor:
+;   Run,https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jgpaiva`%40gmail`%2ecom&item_name`=donate`%20to`%20jgpaiva&item_number`=donationcoder`%2ecom&no_shipping=1&cn=Please`%20drop`%20me`%20a`%20line`%20`%3aD&tax`=0&currency_code=EUR&bn=PP`%2dDonationsBF&charset=UTF`%2d8
+;   GoSub,3Guiclose
+; return  
   
-3GuiEscape:
-3GuiClose:  
-buttonok:
-  gui,3:destroy
-  mutex:=false
-return
+; 3GuiEscape:
+; 3GuiClose:  
+; buttonok:
+;   gui,3:destroy
+;   mutex:=false
+; return
   
 ;*********************************************************************Templates
 
