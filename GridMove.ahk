@@ -1614,10 +1614,11 @@ loadAero()
 
   return true
 }
-  
+
 #include files.ahk
 #include command.ahk
 #include calc.ahk
 #include helper.ahk
 #Include Aero_lib.ahk
 #include strings.ahk
+#Include altdrag.ahk
