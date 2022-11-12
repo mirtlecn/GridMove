@@ -1,6 +1,17 @@
 ;GridMove
 ;By jgpaiva
 ;date: May 2006
+
+;fix, add some functions and translate
+;By kepa
+;date: Nov. 2022
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#SingleInstance Force  
+
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
   ;;options:
@@ -1669,4 +1680,6 @@ loadAero()
 ; #include helper.ahk
 #Include Aero_lib.ahk
 #include strings.ahk
+if AltDragToggle
 #Include altdrag.ahk
+
