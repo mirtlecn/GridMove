@@ -191,15 +191,6 @@ createTrayMenus()
   Menu,Tray, Tip, GridMove V%ScriptVersion%
   ; Menu,Tray, Add, %tray_updates%, EnableAutoUpdate
   Menu,Tray, Add, %tray_ignore%, AddToIgnore
-
-  if(Registered<>"quebec")
-    Menu,Tray, Add, %tray_windows%, StartWithWindowsToggle
-
-  if(Registered<>"quebec")
-    if(startWithWindowsQ())
-      Menu,Tray,Check, %tray_windows%
-    else
-      Menu,Tray,UnCheck, %tray_windows%
  
   createTemplatesMenu()
   Menu,Tray, Add, %tray_templates%, :templates_menu
@@ -221,7 +212,14 @@ createTrayMenus()
   Menu,Tray, Add, %tray_colors%, :colors_menu
   createHotkeysMenu()
   Menu,Tray, Add, %tray_hotkeys%, :hotkeys_menu
-  Menu,templates_menu,add,,
+  Menu,Tray,add,,
+  if(Registered<>"quebec")
+    Menu,Tray, Add, %tray_windows%, StartWithWindowsToggle
+  if(Registered<>"quebec")
+    if(startWithWindowsQ())
+      Menu,Tray,Check, %tray_windows%
+    else
+      Menu,Tray,UnCheck, %tray_windows%
   createLanguageMenu()
   Menu,Tray, Add, %tray_lang%, :chooselanguage
   Menu,Tray, Add, %tray_restart%, ReloadProgram
