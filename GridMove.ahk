@@ -15,8 +15,8 @@
   GridOrder = 2 Part Vertical,EdgeGrid
   UseCommand := False
   CommandHotkey = !g
-  UseFastMove := True
-  FastMoveModifiers = !#
+  UseFastMove := False
+  FastMoveModifiers = !
   Exceptions = 
   MButtonExceptions = 
   MButtonTimeout = 0.3
