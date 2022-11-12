@@ -28,7 +28,7 @@
   StartWithWindows := False
   DisableTitleButtonsDetection := False
   ColorTheme=orange
-  Language=EN
+  Language=zh_CN
   NoTrayIcon:=False
   FirstRun:=False
 
