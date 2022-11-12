@@ -112,6 +112,7 @@ ReadIni:
       IniWrite,%ColorTheme%      ,%ScriptDir%,OtherSettings,ColorTheme
       IniWrite,%Language%        ,%ScriptDir%,OtherSettings,Language
       IniWrite,%NoTrayIcon%      ,%ScriptDir%,InterfaceSettings,NoTrayIcon
+      IniWrite,%AltDragToggle%      ,%ScriptDir%,InterfaceSettings,AltDragToggle
       IniVersion = 14
       IniWrite,%IniVersion%      ,%ScriptDir%, IniSettings,Iniversion
     }
@@ -148,6 +149,7 @@ ReadIni:
     IniRead,Language         ,%ScriptDir%,OtherSettings    ,Language,Error
     IniRead,Registered       ,%ScriptDir%,OtherSettings    ,Registered,Error
     IniRead,NoTrayIcon       ,%ScriptDir%,InterfaceSettings,NoTrayIcon,Error
+    IniRead,AltDragToggle       ,%ScriptDir%,InterfaceSettings,AltDragToggle,Error
     IniRead,FirstRun         ,%ScriptDir%,IniSettings      ,FirstRun,Error
 
     If(Registered = "Error")
@@ -161,7 +163,7 @@ ReadIni:
         OR FastMoveMeta   = "Error" OR TitleLeft      = "Error" OR MButtonTimeout    = "Error" 
         OR Transparency   = "Error" OR Exceptions     = "Error" OR SafeMode          = "Error"
         OR SequentialMove = "Error" OR DebugMode      = "Error" OR NoTrayIcon        = "Error"
-        OR FirstRun       = "ERROR"
+        OR FirstRun       = "ERROR" OR AltDragToggle        = "Error"
         OR DisableTitleButtonsDetection = "Error")
     {
       MsgBox,%error_inifile%
@@ -224,6 +226,7 @@ WriteIni:
   IniWrite,%IniVersion%       ,%ScriptDir%,IniSettings      ,iniversion
   IniWrite,%Language%         ,%ScriptDir%,OtherSettings    ,Language
   IniWrite,%NoTrayIcon%       ,%ScriptDir%,InterfaceSettings,NoTrayIcon
+  IniWrite,%AltDragToggle%         ,%ScriptDir%,InterfaceSettings,AltDragToggle
   IniWrite,%FirstRun%         ,%ScriptDir%,IniSettings      ,FirstRun
 Return   
    

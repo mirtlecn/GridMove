@@ -31,6 +31,7 @@
   Language=zh_CN
   NoTrayIcon:=False
   FirstRun:= False
+  AltDragToggle := True
 
   ;Registered=quebec
 
@@ -348,12 +349,15 @@ setColorTheme:
 createHotkeysMenu()
 {
   global
+  Menu,hotkeys_menu, add, %tray_altdrag%, AltDrag
   Menu,hotkeys_menu, add, %tray_usecommand%, Hotkeys_UseCommand 
   Menu,hotkeys_menu, add, %tray_commandhotkey%, Hotkeys_CommandHotkey
   Menu,hotkeys_menu, add, %tray_fastmove%, Hotkeys_UseFastMove
   Menu,hotkeys_menu, add, %tray_fastmovemodifiers%, Hotkeys_FastMoveModifiers
   If UseCommand
     Menu,hotkeys_menu,check, %tray_usecommand%
+ If AltDragToggle
+    Menu,hotkeys_menu,check,  %tray_altdrag%
   else
     Menu,hotkeys_menu,Disable, %tray_commandhotkey%,
   If UseFastMove
@@ -1031,6 +1035,15 @@ Hotkeys_UseCommand:
       UseCommand := False
   else
       UseCommand := True
+  GoSub,WriteIni
+  Reload
+return
+
+AltDrag:
+  If AltDragToggle
+      AltDragToggle := False
+  else
+      AltDragToggle := True
   GoSub,WriteIni
   Reload
 return
