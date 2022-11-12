@@ -1,4 +1,4 @@
-# GridMove Fix 2022
+# GridMove
 
 1. fix path error in compile.bat
 2. fix GridMove tray `Show Grid` commnad
@@ -21,3 +21,5 @@ More information at [GridMove's homepage](http://jgpaiva.dcmembers.com/gridmove.
 * Aero\_lib.ahk - Library for handling Aero look
 
 This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License.
+
+And GridMove.ico is from https://icons8.com/
