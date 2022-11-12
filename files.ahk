@@ -185,8 +185,8 @@ firstRun:
     GoSub,setlanguage
     ; GoSub,AboutHelp
     GoSub,WriteIni
-    msgbox,64,%info_firstrun_title%,%info_firstrun%
-    settimer, helper,100
+    ; msgbox,64,%info_firstrun_title%,%info_firstrun%
+    ; settimer, helper,100
     
 WriteIni:
   IfNotExist,%ScriptDir%
