@@ -1,25 +1,36 @@
-# GridMove
+<!-- [中文](./README_ZH.MD) -->
 
-1. fix path error in compile.bat
-2. fix GridMove tray `Show Grid` commnad
-3. remove filess for development
+## Short Description
 
-## GridMove
+GridMove is a manual window manager on Windows.
 
-GridMove is a Windows program that aims at making windows management easier. It helps you with this task by defining a visual grid on your desktop, to which you can easily snap windows. It is built with [AutoHotkey](http://www.autohotkey.com "AutoHotKey"), a scripting language for desktop automation for Windows.
+## Long Description
 
-More information at [GridMove's homepage](http://jgpaiva.dcmembers.com/gridmove.html).
+GridMove is a Windows program that aims at making windows management easier. It defines visual grids on your desktop, to which you can easily snap windows.
 
-# Source code organization
+Key features:
+- MultiMonitor support
+- Customizable hotkeys
+- Customizable interface (grid and color)
 
-* GridMove.ahk - Main program, most of the functionality
-* files.ahk - Configuration and Grid parsing
-* command.ahk - Keyboard (command) interface 
-* calc.ahk - Evaluates the .grid files
-* helper.ahk - Tooltips for first run
-* strings.ahk - Language file
-* Aero\_lib.ahk - Library for handling Aero look
+What you see here is a fork version of [JGPaiva's work](https://www.dcmembers.com/jgpaiva/)。Where is the difference : 
+- Fix large gap on windows 10+, thanks to [mr-rak](https://github.com/jgpaiva/GridMove/issues/10#issuecomment-247155758)
+- Fix `Show Grid` fucntion
+- Make the repo neat
+- Add Chinese translation
+- Add change language fucntion
+- Add alt drag function
+- Remove welcome message
+- Deactive functions not worked well on Windows 10 +
 
-This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License.
+It is built with [AutoHotkey](http://www.autohotkey.com "AutoHotKey"), a scripting language for desktop automation for Windows.
 
-And GridMove.ico is from https://icons8.com/
+## Credit
+
+The repository is largly based on [JGPaiva's GridMove](https://github.com/jgpaiva/GridMove), which dates back to Feb. 2018 and has received no updates since then.
+
+GridMove is under Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License.
+
+GridMove.ico is from https://icons8.com/
+
+
