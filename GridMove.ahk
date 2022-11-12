@@ -191,7 +191,7 @@ createTrayMenus()
   Menu,Tray, Tip, GridMove V%ScriptVersion%
   ; Menu,Tray, Add, %tray_updates%, EnableAutoUpdate
   Menu,Tray, Add, %tray_ignore%, AddToIgnore
-  
+
   if(Registered<>"quebec")
     Menu,Tray, Add, %tray_windows%, StartWithWindowsToggle
 
@@ -221,9 +221,39 @@ createTrayMenus()
   Menu,Tray, Add, %tray_colors%, :colors_menu
   createHotkeysMenu()
   Menu,Tray, Add, %tray_hotkeys%, :hotkeys_menu
+  createLanguageMenu()
+  Menu,Tray, Add, %tray_lang%, :chooselanguage
   Menu,Tray, Add, %tray_restart%, ReloadProgram
   Menu,Tray, Add, %tray_exit%, ExitProgram
+
 }
+
+createLanguageMenu()
+{
+  global Language
+  Menu,chooselanguage, add, zh_CN, setLang
+  Menu,chooselanguage, add, English, setLang
+  Menu,chooselanguage, add, French, setLang
+
+ if(Language= "zh_CN")
+    Menu,chooselanguage,check, zh_CN
+  if(Language= "EN")
+    Menu,chooselanguage,check, English
+  if(Language= "FR")
+    Menu,chooselanguage,check, French
+}
+
+setLang:
+  global Language
+  if(A_ThisMenuItem="zh_CN")
+      Language=zh_CN
+  if(A_ThisMenuItem="English")
+      Language=EN
+  if(A_ThisMenuItem="French")
+      Language=FR
+  gosub, writeini
+  reload
+  return
 
 createTemplatesMenu()
 {
@@ -248,7 +278,6 @@ createTemplatesMenu()
   IfExist %A_ScriptDir%\Grids\%out_GridName2%.grid
     menu,templates_menu,check,%out_GridName2%
 }
-
 createOptionsMenu()
 {
   global
