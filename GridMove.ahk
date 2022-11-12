@@ -207,8 +207,8 @@ createTrayMenus()
     msgbox,here
     menu, tray, NoIcon
   }else{
-    IfExist %A_ScriptDir%\Images\gridmove.ico  
-      Menu,Tray, Icon,%A_ScriptDir%\Images\gridmove.ico
+    IfExist %A_ScriptDir%\gridmove.ico
+      Menu,Tray, Icon,%A_ScriptDir%\gridmove.ico
   }
   Menu,Tray, NoStandard
 
