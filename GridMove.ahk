@@ -258,6 +258,7 @@ createTemplatesMenu()
 {
   global GridName
   global tray_refresh
+  global tray_gridpath
   Loop,%A_ScriptDir%\Grids\*.grid
   {
     StringTrimRight,out_GridName2,A_LoopFileName,5
@@ -265,7 +266,8 @@ createTemplatesMenu()
   }
   Menu,templates_menu,add,,
   Menu,templates_menu, add,%tray_refresh%, RefreshTemplates
-    
+  Menu,templates_menu, add,%tray_gridpath%, OpenGridPath
+  
   stringgetpos,out_pos,gridname,\,R1
   if out_pos <= 0
     stringgetpos,out_pos,gridname,/,R1
@@ -277,6 +279,10 @@ createTemplatesMenu()
   IfExist %A_ScriptDir%\Grids\%out_GridName2%.grid
     menu,templates_menu,check,%out_GridName2%
 }
+OpenGridPath(){
+  Run, explorer.exe %A_ScriptDir%\Grids
+}
+
 createOptionsMenu()
 {
   global
