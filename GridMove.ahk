@@ -283,16 +283,17 @@ createOptionsMenu()
   Menu,options_menu, add, %tray_safemode%, Options_SafeMode
   Menu,options_menu, add, %tray_showgrid%, Options_ShowGrid
   Menu,options_menu, add, %tray_shownumbers%, Options_ShowNumbers
-  Menu,options_menu, add, %tray_lbuttondrag%, Options_LButtonDrag
+  ;; remove this fucntion because many app do not use traditional title bar
+  ; Menu,options_menu, add, %tray_lbuttondrag%, Options_LButtonDrag
   Menu,options_menu, add, %tray_mbuttondrag%, Options_MButtonDrag
   Menu,options_menu, add, %tray_edgedrag%, Options_EdgeDrag
   Menu,options_menu, add, %tray_edgetime%, Options_EdgeTime
-  Menu,options_menu, add, %tray_titlesize%, Options_TitleSize
+  ; Menu,options_menu, add, %tray_titlesize%, Options_TitleSize
   Menu,options_menu, add, %tray_gridorder%, Options_GridOrder
-  If LButtonDrag
-    Menu,options_menu,check, %tray_lbuttondrag%
-  else
-    Menu,options_menu,Disable, %tray_titlesize%
+  ; If LButtonDrag
+  ;   Menu,options_menu,check, %tray_lbuttondrag%
+  ; else
+  ;   Menu,options_menu,Disable, %tray_titlesize%
   If MButtonDrag
     Menu,options_menu,check, %tray_mbuttondrag%
   If EdgeDrag
