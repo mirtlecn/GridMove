@@ -14,11 +14,11 @@
   GridName = Grids/3 Part.grid
   GridOrder = 2 Part Vertical,3 Part,EdgeGrid
   UseCommand := False
-  CommandHotkey = #g
+  CommandHotkey = !g
   UseFastMove := True
-  FastMoveModifiers = #
-  Exceptions = QuarkXPress
-  MButtonExceptions = inkscape.exe 
+  FastMoveModifiers = !#
+  Exceptions = 
+  MButtonExceptions = 
   MButtonTimeout = 0.3
   Transparency = 200
   SafeMode := True
@@ -30,7 +30,7 @@
   ColorTheme=orange
   Language=zh_CN
   NoTrayIcon:=False
-  FirstRun:=False
+  FirstRun:= False
 
   ;Registered=quebec
 
@@ -1647,7 +1647,7 @@ loadAero()
 #include files.ahk
 #include command.ahk
 #include calc.ahk
-#include helper.ahk
+; #include helper.ahk
 #Include Aero_lib.ahk
 #include strings.ahk
 #Include altdrag.ahk
