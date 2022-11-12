@@ -221,6 +221,7 @@ createTrayMenus()
   Menu,Tray, Add, %tray_colors%, :colors_menu
   createHotkeysMenu()
   Menu,Tray, Add, %tray_hotkeys%, :hotkeys_menu
+  Menu,templates_menu,add,,
   createLanguageMenu()
   Menu,Tray, Add, %tray_lang%, :chooselanguage
   Menu,Tray, Add, %tray_restart%, ReloadProgram
