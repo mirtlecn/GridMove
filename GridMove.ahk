@@ -23,7 +23,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
   ShowNumbersFlag := True ;configures the showing or not of the numbers
   TitleSize := 100
   GridName = Grids/3 Part.grid
-  GridOrder = 2 Part Vertical,EdgeGrid
+  GridOrder = 2 Part Vertical,Kepa
   UseCommand := False
   CommandHotkey = !g
   UseFastMove := False
