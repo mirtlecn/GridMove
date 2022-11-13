@@ -144,12 +144,16 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
     Hotkey, MButton, MButtonMove
 
   If UseFastMove
+  {
     GoSub,DefineHotkeys
+  }
+    
 
   if SequentialMove
   {
     Hotkey, %FastMoveModifiers%Right,MoveToNext
     Hotkey, %FastMoveModifiers%Left,MoveToPrevious
+    HotKey, %FastMoveModifiers%T,NextGrid
   }
 
   MPFlag := True 
@@ -271,6 +275,7 @@ createTemplatesMenu()
   global GridName
   global tray_refresh
   global tray_gridpath
+  global tray_gridorder
   Loop,%A_ScriptDir%\Grids\*.grid
   {
     StringTrimRight,out_GridName2,A_LoopFileName,5
@@ -278,8 +283,8 @@ createTemplatesMenu()
   }
   Menu,templates_menu,add,,
   Menu,templates_menu, add,%tray_refresh%, RefreshTemplates
+  Menu,templates_menu, add, %tray_gridorder%, Options_GridOrder
   Menu,templates_menu, add,%tray_gridpath%, OpenGridPath
-  
   stringgetpos,out_pos,gridname,\,R1
   if out_pos <= 0
     stringgetpos,out_pos,gridname,/,R1
@@ -307,7 +312,6 @@ createOptionsMenu()
   Menu,options_menu, add, %tray_edgedrag%, Options_EdgeDrag
   Menu,options_menu, add, %tray_edgetime%, Options_EdgeTime
   ; Menu,options_menu, add, %tray_titlesize%, Options_TitleSize
-  Menu,options_menu, add, %tray_gridorder%, Options_GridOrder
   ; If LButtonDrag
   ;   Menu,options_menu,check, %tray_lbuttondrag%
   ; else
@@ -364,6 +368,7 @@ createHotkeysMenu()
   Menu,hotkeys_menu, add, %tray_usecommand%, Hotkeys_UseCommand 
   Menu,hotkeys_menu, add, %tray_commandhotkey%, Hotkeys_CommandHotkey
   Menu,hotkeys_menu, add, %tray_fastmove%, Hotkeys_UseFastMove
+  Menu,hotkeys_menu, add, %tray_extrahotkey%, Hotkeys_Extrahotkey
   Menu,hotkeys_menu, add, %tray_fastmovemodifiers%, Hotkeys_FastMoveModifiers
   If UseCommand
     Menu,hotkeys_menu,check, %tray_usecommand%
@@ -374,8 +379,16 @@ createHotkeysMenu()
   If UseFastMove
     Menu,hotkeys_menu,check, %tray_fastmove%
   else
+  {
     Menu,hotkeys_menu,Disable, %tray_fastmovemodifiers%
+    Menu,hotkeys_menu,Disable, %tray_extrahotkey%
+  }
+  if SequentialMove
+    Menu,hotkeys_menu,check, %tray_extrahotkey%
 }
+
+
+
 
 startWithWindowsQ()
 {
@@ -1059,6 +1072,14 @@ AltDrag:
   Reload
 return
 
+Hotkeys_Extrahotkey:
+  If SequentialMove
+    SequentialMove := False
+  else
+    SequentialMove := True
+  GoSub,WriteIni
+  Reload
+Return
 
 Hotkeys_UseFastMove:
   If UseFastMove
