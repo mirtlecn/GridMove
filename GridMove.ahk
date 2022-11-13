@@ -46,7 +46,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
   ;;end of options
 
-  ScriptVersion = 2
+  ScriptVersion = 2.1
 
   ; Detect Windows 10
   if % substr(a_osversion, 1, 2) = 10
@@ -852,10 +852,10 @@ setGuiColors()
     verticalGrid=Gridv_blue.bmp
   }else if(colortheme="black")
   {
-    Gui, Font, s15 cBlack, Tahoma
+    Gui, Font, s15 cPink, Tahoma
     shadowcolor=333333
-    textcolor=000000
-    guicolor=333333
+    textcolor= EB8D8D
+    guicolor=000000
     horizontalGrid=Gridh_black.bmp
     verticalGrid=Gridv_black.bmp
   }else{
