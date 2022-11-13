@@ -124,13 +124,11 @@ ReadIni:
     }
 
     IniRead,GridName         ,%ScriptDir%,GridSettings     ,GridName,Error
-    IniRead,LButtonDrag      ,%ScriptDir%,InterfaceSettings,LButtonDrag,Error
     IniRead,MButtonDrag      ,%ScriptDir%,InterfaceSettings,MButtonDrag,Error
     IniRead,EdgeDrag         ,%ScriptDir%,InterfaceSettings,EdgeDrag,Error
     IniRead,EdgeTime         ,%ScriptDir%,OtherSettings    ,EdgeTime,Error
     IniRead,ShowGroupsFlag   ,%ScriptDir%,OtherSettings    ,ShowGroupsFlag,Error
     IniRead,ShowNumbersFlag  ,%ScriptDir%,OtherSettings    ,ShowNumbersFlag,Error
-    IniRead,TitleSize        ,%ScriptDir%,OtherSettings    ,TitleSize,Error
     IniRead,GridOrder        ,%ScriptDir%,GridSettings     ,GridOrder,Error
     IniRead,UseCommand       ,%ScriptDir%,Programsettings  ,UseCommand,Error
     IniRead,CommandHotkey    ,%ScriptDir%,Programsettings  ,CommandHotkey,Error
@@ -155,10 +153,10 @@ ReadIni:
     If(Registered = "Error")
       Registered =
 
-    If (GridName          = "Error" OR LButtonDrag    = "Error" OR MButtonDrag       = "Error" 
+    If (GridName          = "Error" OR MButtonDrag       = "Error" 
         OR EdgeDrag       = "Error" OR EdgeTime       = "Error" OR ShowGroupsFlag    = "Error" 
-        OR TitleSize      = "Error" OR ShowGroupsFlag = "Error" OR ShowNumbersFlag   = "Error" 
-        OR TitleSize      = "Error" OR GridOrder      = "Error" OR UseCommand        = "Error" 
+        OR ShowGroupsFlag = "Error" OR ShowNumbersFlag   = "Error" 
+        OR GridOrder      = "Error" OR UseCommand        = "Error" 
         OR CommandHotkey  = "Error" OR UseFastMove    = "Error" OR FastMoveModifiers = "Error" 
         OR FastMoveMeta   = "Error" OR TitleLeft      = "Error" OR MButtonTimeout    = "Error" 
         OR Transparency   = "Error" OR Exceptions     = "Error" OR SafeMode          = "Error"
@@ -201,13 +199,11 @@ WriteIni:
     FileAppend, ,%ScriptDir%
   }
   IniWrite,%GridName%         ,%ScriptDir%,GridSettings     ,GridName
-  IniWrite,%LButtonDrag%      ,%ScriptDir%,InterfaceSettings,LButtonDrag
   IniWrite,%MButtonDrag%      ,%ScriptDir%,InterfaceSettings,MButtonDrag
   IniWrite,%EdgeDrag%         ,%ScriptDir%,InterfaceSettings,EdgeDrag
   IniWrite,%EdgeTime%         ,%ScriptDir%,OtherSettings    ,EdgeTime
   IniWrite,%ShowGroupsFlag%   ,%ScriptDir%,OtherSettings    ,ShowGroupsFlag
   IniWrite,%ShowNumbersFlag%  ,%ScriptDir%,OtherSettings    ,ShowNumbersFlag
-  IniWrite,%TitleSize%        ,%ScriptDir%,OtherSettings    ,TitleSize
   IniWrite,%GridOrder%        ,%ScriptDir%,GridSettings     ,GridOrder
   IniWrite,%UseCommand%       ,%ScriptDir%,ProgramSettings  ,UseCommand
   IniWrite,%CommandHotkey%    ,%ScriptDir%,ProgramSettings  ,CommandHotkey

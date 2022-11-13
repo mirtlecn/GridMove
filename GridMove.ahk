@@ -16,12 +16,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
   ;;options:
   MButtonDrag := True ;to be able to drag a window using the 3rd mouse button
-  LButtonDrag:=True ;to be able to drag a window by its title
   EdgeDrag := False ;to be able to bring the grid up when dragging a window to the edge
   EdgeTime := 500
   ShowGroupsFlag := True ;configures the showing or not of the groups
   ShowNumbersFlag := True ;configures the showing or not of the numbers
-  TitleSize := 100
   GridName = Grids/3 Part.grid
   GridOrder = 2 Part Vertical,Kepa
   UseCommand := False
@@ -306,16 +304,9 @@ createOptionsMenu()
   Menu,options_menu, add, %tray_safemode%, Options_SafeMode
   Menu,options_menu, add, %tray_showgrid%, Options_ShowGrid
   Menu,options_menu, add, %tray_shownumbers%, Options_ShowNumbers
-  ;; remove this fucntion because many app do not use traditional title bar
-  ; Menu,options_menu, add, %tray_lbuttondrag%, Options_LButtonDrag
   Menu,options_menu, add, %tray_mbuttondrag%, Options_MButtonDrag
   Menu,options_menu, add, %tray_edgedrag%, Options_EdgeDrag
   Menu,options_menu, add, %tray_edgetime%, Options_EdgeTime
-  ; Menu,options_menu, add, %tray_titlesize%, Options_TitleSize
-  ; If LButtonDrag
-  ;   Menu,options_menu,check, %tray_lbuttondrag%
-  ; else
-  ;   Menu,options_menu,Disable, %tray_titlesize%
   If MButtonDrag
     Menu,options_menu,check, %tray_mbuttondrag%
   If EdgeDrag
@@ -594,33 +585,6 @@ MousePosition:
   {
     Settimer, MousePosition,10
     return
-  }
-
-  if(WinWidth > 3 * TitleSize)
-  {
-    If (TitleSize < WinWidth - 100 AND LButtonDrag
-        AND OldmouseX > TitleLeft AND OldMouseX < TitleSize
-  AND (MouseControl = "" OR DisableTitleButtonsDetection))
-    {
-      Hotkey = LButton
-      sendinput {LButton up} 
-      GoSub,DropZoneMode
-      Settimer, MousePosition,10
-      return
-    }
-  } 
-  else 
-  {
-    If (LButtonDrag AND OldmouseX > TitleLeft 
-        AND OldMouseX < TitleLeft + 20 AND WinWidth > 170
-        AND (MouseControl = "" OR  DisableTitleButtonsDetection))
-    {
-      Hotkey = LButton
-      sendinput {LButton up} 
-      GoSub,DropZoneMode
-      Settimer, MousePosition,10
-      return
-    }
   }
 
   if not EdgeDrag
@@ -1116,22 +1080,6 @@ Options_GridOrder:
   GridOrder := input
   GoSub, WriteIni
 return
-  
-Options_LButtonDrag:
-  If LButtonDrag
-  {
-    Menu,options_menu,Uncheck, %tray_lbuttondrag%
-    LButtonDrag := false
-    Menu,options_menu,Disable, %tray_titlesize%,
-  }
-  else
-  {
-    Menu,options_menu,check, %tray_lbuttondrag%
-    LButtonDrag := true
-    Menu,options_menu,Enable, %tray_titlesize%,
-  }
-  GoSub, WriteIni
-return
 
 Options_mbuttonDrag:
   If mbuttonDrag
@@ -1165,14 +1113,6 @@ Options_EdgeTime:
   EdgeTime := input
   GoSub, WriteIni
 return
-  
-Options_TitleSize:
-  inputbox,input, %input_titlesize_title%,%input_titlesize%,,,,,,,,%TitleSize%
-  if errorlevel <> 0
-    return
-  TitleSize := input
-  GoSub, WriteIni
-return  
   
 Options_SafeMode:
   if SafeMode
@@ -1619,24 +1559,6 @@ StartWithWindowsToggle:
       Menu,Tray,UnCheck,%tray_windows%
 return
 
-
- ; Disable Update for now  --- 
-; EnableAutoUpdate:
-;   ; Register with DcUpdater and check for updates. 
-;   ; When no updates are found nothing is displayed.
-;   ; make sure the dcuhelper.exe is in a subdirectory called 'dcuhelper' of this script's location.
-;   cmdParams = -ri    ;r = register app, i = check for updates
-;   uniqueID = GridMove ;anything allowed
-;   dcuHelperDir = %A_ScriptDir%
-;   IfExist, %dcuHelperDir%\dcuhelper.exe
-;   {
-;     OutputDebug, %A_Now%: %dcuHelperDir%\dcuhelper.exe %cmdParams% "%uniqueID%" "%A_ScriptDir%" . -shownew -nothingexit
-;     Run, %dcuHelperDir%\dcuhelper.exe %cmdParams% "%uniqueID%" "%A_ScriptDir%" Updater ,,Hide
-;   }
-; return
-; Disable Update for now ----
-
-
 AddToIgnore:
   ;add selected window to ignore list
   Ignore_added := false
@@ -1698,9 +1620,7 @@ loadAero()
 #include files.ahk
 #include command.ahk
 #include calc.ahk
-; #include helper.ahk
 #Include Aero_lib.ahk
 #include strings.ahk
-if AltDragToggle
 #Include altdrag.ahk
 
