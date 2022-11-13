@@ -802,7 +802,7 @@ GetGrid(number)
 WinGetClass, class, ahk_id %WindowId%
 WinGet, exe, ProcessName, ahk_id %WindowId%
 ; Eletron apps don't have one line edge, except chrome, and maybe chromium
-if ( class = "Chrome_WidgetWin_1" and exe != "chrome.exe" and exe != "chromium" )
+if ( class = "Chrome_WidgetWin_1" and exe != "chrome.exe" and exe != "chromium.exe" and exe != "msedge.exe" )
 {
   GridTop := GridTop + 1
   GridBottom := GridBottom - 1
