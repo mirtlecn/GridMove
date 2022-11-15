@@ -798,10 +798,12 @@ GetGrid(number)
   else
     GridBottom := round(GridBottom)
 
-  GridTop := GridTop + 1
-  GridBottom := GridBottom - 1
-  GridRight := GridRight - 1
-  GridLeft := GridLeft + 1
+  if ( GridTop <> WindowHeight and GridLeft <> WindowWidth){
+    GridTop := GridTop + 1
+    GridBottom := GridBottom - 1
+    GridRight := GridRight - 1
+    GridLeft := GridLeft + 1
+  }
 
   GridWidth  := GridRight - GridLeft 
   GridHeight := GridBottom - GridTop
