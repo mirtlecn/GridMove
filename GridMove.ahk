@@ -37,7 +37,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
   StartWithWindows := False
   DisableTitleButtonsDetection := False
   ColorTheme=orange
-  Language=zh_CN
+  Language=EN
   NoTrayIcon:=False
   FirstRun:= False
   AltDragToggle := True
