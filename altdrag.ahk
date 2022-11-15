@@ -1,16 +1,20 @@
 #if AltDragToggle
 
 ; Source  https://gist.github.com/stef-levesque/8927e17217fe2fd3e48d
-
-; Note: You can optionally release the ALT key after pressing down the mouse button
-; rather than holding it down the whole time.
-
+~RWin & LButton::
+~LWin & LButton::
 ~Alt & LButton::
     CoordMode, Mouse  ; Switch to screen/absolute coordinates.
     MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
+    ; except Windows desktop and windows basic UI ( like windows search and control panel)
+    WinGetClass,aClass,ahk_id %EWD_MouseWin%
+    if (aClass = "WorkerW" or aClass = "Windows.UI.Core.CoreWindow"  or aClass = "Shell_TrayWnd")
+        Return
+    ; Only if the window isn't maximized
     WinGetPos, EWD_OriginalPosX, EWD_OriginalPosY,,, ahk_id %EWD_MouseWin%
-    WinGet, EWD_WinState, MinMax, ahk_id %EWD_MouseWin%
-    if EWD_WinState = 0  ; Only if the window isn't maximized
+    
+    WinGet, winState, MinMax, ahk_id %EWD_MouseWin%
+    if winState = 0  
         SetTimer, EWD_WatchMouse, 10 ; Track the mouse as the user drags it.
 return
 
