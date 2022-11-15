@@ -193,7 +193,7 @@ MoveToGrid(GridToMove)
       Return
       }
 
-  if (WinClass = "DV2ControlHost" OR Winclass = "Progman"
+  if (WinClass = "DV2ControlHost" OR WinClass = "Progman"
       OR Winclass = "Shell_TrayWnd")
     Return
 
@@ -231,6 +231,7 @@ MoveToGrid(GridToMove)
     StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
     return
   }
+
   If (GridTop = "AlwaysOnTop")
   {
     WinSet, AlwaysOnTop, Toggle,A 
@@ -280,6 +281,11 @@ MoveToGrid(GridToMove)
   GridRight := round(GridRight)
   GridBottom := round(GridBottom)
 
+  GridTop := GridTop + 1
+  GridBottom := GridBottom - 1
+  GridRight := GridRight - 1
+  GridLeft := GridLeft + 1 
+
   GridWidth  := GridRight - GridLeft 
   GridHeight := GridBottom - GridTop
 
@@ -317,7 +323,7 @@ DefineHotkeys:
      Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
   }
   Hotkey, %FastMoveModifiers%0, WinHotKey
-  Hotkey, %FastMoveModifiers%Numpad0, WinHotkeys
+  Hotkey, %FastMoveModifiers%Numpad0, WinHotkey
   if FastMoveMeta <>
     Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
   return 
@@ -326,7 +332,11 @@ WinHotkeys:
   StringRight,Number,A_ThisHotkey,1
   MoveToGrid(Number)
   return
-  
+
+WinHotkey:
+  MoveToGrid("10")
+  return
+
 WinHotkeysMeta:
   GoSub, ShowGroups
 
@@ -393,10 +403,6 @@ WinHotkeysMeta:
   GoSub, Command_Hide
   FirstNumber := FirstNumber + 10
   MoveToGrid(FirstNumber)
-  return
-
-WinHotkey:
-  MoveToGrid("10")
   return
 
 MoveToPrevious:

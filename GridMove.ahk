@@ -798,21 +798,11 @@ GetGrid(number)
   else
     GridBottom := round(GridBottom)
 
-; handle some special apps.
-WinGetClass, class, ahk_id %WindowId%
-WinGet, exe, ProcessName, ahk_id %WindowId%
-; Eletron apps don't have one line edge, except chrome, and maybe chromium
-if ( class = "Chrome_WidgetWin_1" and exe != "chrome.exe" and exe != "chromium.exe" and exe != "msedge.exe" )
-{
   GridTop := GridTop + 1
   GridBottom := GridBottom - 1
   GridRight := GridRight - 1
-  GridLeft := GridLeft + 1 
-}
-; Firefox no top line edge
-If (exe = "firefox.exe"){
-  GridTop := GridTop + 1
-}
+  GridLeft := GridLeft + 1
+
   GridWidth  := GridRight - GridLeft 
   GridHeight := GridBottom - GridTop
 }
