@@ -46,7 +46,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
   ;;end of options
 
-  ScriptVersion = 2.1
+  ScriptVersion = 2.2
 
   ; Detect Windows 10
   if % substr(a_osversion, 1, 2) = 10

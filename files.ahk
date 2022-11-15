@@ -186,10 +186,10 @@ firstRun:
   if ( A_Language = "0804" OR A_Language = "1004" ){
       Language = zh_CN
   }
-  else if ( A_Language = "040c" OR A_Language = "080c" OR A_Language = "0c0c" OR A_Language OR = "100c" OR A_Language = "140c" OR A_Language = "180c") {
+  else if ( A_Language = "040c" OR A_Language = "080c" OR A_Language = "0c0c" OR = "100c" OR A_Language = "140c" OR A_Language = "180c") {
     Language = FR
   }
-  Else {
+  else {
     Language = EN
   }
   
