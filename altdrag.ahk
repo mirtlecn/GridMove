@@ -3,7 +3,6 @@
 ; Source  https://gist.github.com/stef-levesque/8927e17217fe2fd3e48d
 ~RWin & LButton::
 ~LWin & LButton::
-~Alt & LButton::
     CoordMode, Mouse  ; Switch to screen/absolute coordinates.
     MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
     ; except Windows desktop and windows basic UI ( like windows search and control panel)

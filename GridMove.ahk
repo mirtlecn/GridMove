@@ -6,12 +6,6 @@
 ;By kepa
 ;date: Nov. 2022
 
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-#SingleInstance Force  
-
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
   ;;options:
@@ -41,6 +35,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
   NoTrayIcon:=False
   FirstRun:= False
   AltDragToggle := True
+  AltDragMove :=True
 
   ;Registered=quebec
 
@@ -140,7 +135,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
   If MButtonDrag
     Hotkey, MButton, MButtonMove
-
+  
   If UseFastMove
   {
     GoSub,DefineHotkeys
@@ -305,8 +300,11 @@ createOptionsMenu()
   Menu,options_menu, add, %tray_showgrid%, Options_ShowGrid
   Menu,options_menu, add, %tray_shownumbers%, Options_ShowNumbers
   Menu,options_menu, add, %tray_mbuttondrag%, Options_MButtonDrag
+  Menu,options_menu, add, %tray_altdragmove%, Options_AltDragMove
   Menu,options_menu, add, %tray_edgedrag%, Options_EdgeDrag
   Menu,options_menu, add, %tray_edgetime%, Options_EdgeTime
+  if AltDragMove
+    Menu,options_menu,check, %tray_altdragmove%
   If MButtonDrag
     Menu,options_menu,check, %tray_mbuttondrag%
   If EdgeDrag
@@ -355,7 +353,7 @@ setColorTheme:
 createHotkeysMenu()
 {
   global
-  Menu,hotkeys_menu, add, %tray_altdrag%, AltDrag
+  Menu,hotkeys_menu, add, %tray_windrag%, AltDrag
   Menu,hotkeys_menu, add, %tray_usecommand%, Hotkeys_UseCommand 
   Menu,hotkeys_menu, add, %tray_commandhotkey%, Hotkeys_CommandHotkey
   Menu,hotkeys_menu, add, %tray_fastmove%, Hotkeys_UseFastMove
@@ -364,7 +362,7 @@ createHotkeysMenu()
   If UseCommand
     Menu,hotkeys_menu,check, %tray_usecommand%
  If AltDragToggle
-    Menu,hotkeys_menu,check,  %tray_altdrag%
+    Menu,hotkeys_menu,check,  %tray_windrag%
   else
     Menu,hotkeys_menu,Disable, %tray_commandhotkey%,
   If UseFastMove
@@ -415,7 +413,7 @@ DropZoneMode:
       Critical, off
       return      
       }  
-  
+
     GetKeyState,State,%hotkey%,P
     If State = U
         break
@@ -498,6 +496,55 @@ cancel:
     Gui,2:Hide
   }
 return
+
+;*******************AltDrag method
+#if AltDragMove
+~Alt & LButton::
+  CoordMode,Mouse,Screen
+  MouseGetPos, OldMouseX, OldMouseY, Window,
+  WinGetTitle,WinTitle,ahk_id %Window%
+  WinGetClass,WinClass,ahk_id %Window%
+  WinGetPos,WinLeft,WinTop,WinWidth,WinHeight,ahk_id%Window%
+  WinGet,WinStyle,Style,ahk_id %Window%
+  WinGet,WindowId,Id,ahk_id %Window%
+  WinGet, WindowProcess , ProcessName, ahk_id %Window%
+
+  if SafeMode
+  {
+    if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
+    {
+      sendinput,{Altdown}
+      Keywait, LButton
+      sendinput,{Altup}
+      Return
+    }
+  }
+  If Winclass in %Exceptions%
+  {
+      sendinput,{Altdown}
+      Keywait, LButton
+      sendinput,{Altup}
+    Return
+  }
+  If WindowProcess in %MButtonExceptions%
+  {
+      sendinput,{Altdown}
+      Keywait, LButton
+      sendinput,{Altup}
+    Return
+  }
+  KeyWait,LButton,T%MButtonTimeOut%
+  if errorlevel = 0
+  {
+    sendinput,{LButton}
+    return
+  }
+
+  Winactivate, ahk_id %window%
+  Hotkey = LButton
+  GoSub, DropZoneMode
+  return
+  #if
   
 ;*******************Mbutton method
 
@@ -1097,6 +1144,15 @@ Options_mbuttonDrag:
   reload
 return
   
+Options_AltDragMove:
+  If AltDragMove
+    AltDragMove := false
+  else
+    AltDragMove := true
+  GoSub, WriteIni
+  reload
+return
+
 Options_EdgeDrag:
   If EdgeDrag
   {
