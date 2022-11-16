@@ -14,6 +14,7 @@
     
     WinGet, winState, MinMax, ahk_id %EWD_MouseWin%
     if winState = 0  
+        WinActivate, ahk_id %EWD_MouseWin%
         SetTimer, EWD_WatchMouse, 10 ; Track the mouse as the user drags it.
 return
 

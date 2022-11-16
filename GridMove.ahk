@@ -157,6 +157,8 @@
   HotKey,RButton,off
   HotKey,Esc,cancel
   HotKey,Esc,off
+  HotKey,LButton,cancel
+  HotKey,LButton,off
   HotKey,F12,AddCurrentToIgnore
   HotKey,F11,AddCurrentToIgnoreCancel
   HotKey,F12,off
@@ -398,6 +400,7 @@ DropZoneMode:
   gosub,showgroups
   Hotkey,RButton,on
   Hotkey,Esc,on
+  Hotkey,LButton,on
   Canceled := False
   CoordMode,Mouse,Screen
   hideGui2()
@@ -409,6 +412,7 @@ DropZoneMode:
       Gui,2:Hide
       Hotkey,RButton,off
       Hotkey,Esc,off
+      Hotkey,LButton,off
       DropZoneModeFlag := false
       Critical, off
       return      
@@ -474,6 +478,7 @@ DropZoneMode:
   Gui,2:Hide
   Hotkey,RButton,off
   Hotkey,Esc,off
+  Hotkey,LButton,off
   GoSub,SnapWindow
   Gosub,hidegroups
 return
@@ -540,7 +545,7 @@ return
     return
   }
 
-  Winactivate, ahk_id %window%
+  ; Winactivate, ahk_id %window%
   Hotkey = LButton
   GoSub, DropZoneMode
   return
@@ -589,7 +594,7 @@ MButtonMove:
     return
   }
 
-  Winactivate, ahk_id %window%
+  ; Winactivate, ahk_id %window%
   Hotkey = MButton
   GoSub, DropZoneMode
   return
