@@ -97,6 +97,7 @@ ReadIni:
     if IniVersion = 11
     {
       IniWrite,%GridOrder%       ,%ScriptDir%,GridSettings,GridOrder
+      IniWrite,%Gap%       ,%ScriptDir%,GridSettings,Gap
       IniWrite,%GridName%        ,%ScriptDir%,GridSettings,GridName
       IniVersion = 12
       IniWrite,%IniVersion%      ,%ScriptDir%, IniSettings,Iniversion
@@ -131,6 +132,7 @@ ReadIni:
     IniRead,ShowGroupsFlag   ,%ScriptDir%,OtherSettings    ,ShowGroupsFlag,Error
     IniRead,ShowNumbersFlag  ,%ScriptDir%,OtherSettings    ,ShowNumbersFlag,Error
     IniRead,GridOrder        ,%ScriptDir%,GridSettings     ,GridOrder,Error
+    IniRead,Gap       ,%ScriptDir%,GridSettings     ,Gap,Error
     IniRead,UseCommand       ,%ScriptDir%,Programsettings  ,UseCommand,Error
     IniRead,CommandHotkey    ,%ScriptDir%,Programsettings  ,CommandHotkey,Error
     IniRead,UseFastMove      ,%ScriptDir%,Programsettings  ,UseFastMove,Error
@@ -155,7 +157,7 @@ ReadIni:
       Registered =
 
     If (GridName          = "Error" OR MButtonDrag       = "Error"  OR AltDragMove = "Error"
-        OR EdgeDrag       = "Error" OR EdgeTime       = "Error" OR ShowGroupsFlag    = "Error" 
+        OR EdgeDrag       = "Error" OR EdgeTime       = "Error" OR ShowGroupsFlag    = "Error"  OR Gap = "Error"
         OR ShowGroupsFlag = "Error" OR ShowNumbersFlag   = "Error" 
         OR GridOrder      = "Error" OR UseCommand        = "Error" 
         OR CommandHotkey  = "Error" OR UseFastMove    = "Error" OR FastMoveModifiers = "Error" 
@@ -220,6 +222,7 @@ WriteIni:
   IniWrite,%ShowGroupsFlag%   ,%ScriptDir%,OtherSettings    ,ShowGroupsFlag
   IniWrite,%ShowNumbersFlag%  ,%ScriptDir%,OtherSettings    ,ShowNumbersFlag
   IniWrite,%GridOrder%        ,%ScriptDir%,GridSettings     ,GridOrder
+  IniWrite,%Gap%        ,%ScriptDir%,GridSettings     ,Gap
   IniWrite,%UseCommand%       ,%ScriptDir%,ProgramSettings  ,UseCommand
   IniWrite,%CommandHotkey%    ,%ScriptDir%,ProgramSettings  ,CommandHotkey
   IniWrite,%UseFastMove%      ,%ScriptDir%,ProgramSettings  ,UseFastMove

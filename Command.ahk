@@ -282,10 +282,10 @@ MoveToGrid(GridToMove)
   GridBottom := round(GridBottom)
   
 if ( GridTop <> WindowHeight and GridLeft <> WindowWidth){
-  GridTop := GridTop + 1
-  GridBottom := GridBottom - 1
-  GridRight := GridRight - 1
-  GridLeft := GridLeft + 1
+  GridTop := GridTop + Gap
+  GridBottom := GridBottom - Gap
+  GridRight := GridRight - Gap
+  GridLeft := GridLeft + Gap
   }
 
   GridWidth  := GridRight - GridLeft 

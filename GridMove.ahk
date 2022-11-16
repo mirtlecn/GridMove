@@ -36,6 +36,7 @@
   FirstRun:= False
   AltDragToggle := True
   AltDragMove :=True
+  Gap := 5
 
   ;Registered=quebec
 
@@ -295,6 +296,10 @@ OpenGridPath(){
   Run, explorer.exe %A_ScriptDir%\Grids
 }
 
+ShowIniFile(){
+  Run, explorer.exe %A_AppData%\GridMove\
+}
+
 createOptionsMenu()
 {
   global
@@ -305,6 +310,7 @@ createOptionsMenu()
   Menu,options_menu, add, %tray_altdragmove%, Options_AltDragMove
   Menu,options_menu, add, %tray_edgedrag%, Options_EdgeDrag
   Menu,options_menu, add, %tray_edgetime%, Options_EdgeTime
+  Menu,options_menu, add, %tray_ini%, ShowIniFile
   if AltDragMove
     Menu,options_menu,check, %tray_altdragmove%
   If MButtonDrag
@@ -851,10 +857,10 @@ GetGrid(number)
     GridBottom := round(GridBottom)
 
   if ( GridTop <> WindowHeight and GridLeft <> WindowWidth){
-    GridTop := GridTop + 1
-    GridBottom := GridBottom - 1
-    GridRight := GridRight - 1
-    GridLeft := GridLeft + 1
+    GridTop := GridTop + Gap
+    GridBottom := GridBottom - Gap
+    GridRight := GridRight - Gap
+    GridLeft := GridLeft + Gap
   }
 
   GridWidth  := GridRight - GridLeft 
