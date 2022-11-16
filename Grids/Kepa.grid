@@ -7,10 +7,10 @@
   TriggerBottom= [Monitor1Top] + [Monitor1Height] / 40
   TriggerRight = [Monitor1Right]  - [Monitor1Width] / 5 * 1
 
-  GridTop   = Maximize
-  GridLeft  = Maximize
-  GridBottom= Maximize
-  GridRight = Maximize
+  GridTop   = [Monitor1Top]
+  GridLeft  = [Monitor1Left]
+  GridBottom= [Monitor1Bottom]
+  GridRight = [Monitor1Right]
 
 [2]
   TriggerTop    = [Monitor1Top]
