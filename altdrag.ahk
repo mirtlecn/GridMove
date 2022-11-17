@@ -1,6 +1,17 @@
 #if AltDragToggle
 
 ; Source  https://gist.github.com/stef-levesque/8927e17217fe2fd3e48d
+
+~RWin & MButton::
+~LWin & MButton::
+    CoordMode, Mouse
+    MouseGetPos, , , win
+    WinGetClass,aClass,ahk_id %win%
+    if (aClass = "WorkerW" or aClass = "Windows.UI.Core.CoreWindow"  or aClass = "Shell_TrayWnd")
+        Return
+    WinClose, ahk_id %win%
+return
+
 ~RWin & LButton::
 ~LWin & LButton::
     CoordMode, Mouse  ; Switch to screen/absolute coordinates.
