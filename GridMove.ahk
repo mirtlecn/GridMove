@@ -36,7 +36,7 @@
   FirstRun:= False
   AltDragToggle := True
   AltDragMove :=True
-  Gap := 5
+  Gap := 1
 
   ;Registered=quebec
 
@@ -303,7 +303,7 @@ ShowIniFile(){
 createOptionsMenu()
 {
   global
-  Menu,options_menu, add, %tray_safemode%, Options_SafeMode
+  ; Menu,options_menu, add, %tray_safemode%, Options_SafeMode
   Menu,options_menu, add, %tray_showgrid%, Options_ShowGrid
   Menu,options_menu, add, %tray_shownumbers%, Options_ShowNumbers
   Menu,options_menu, add, %tray_mbuttondrag%, Options_MButtonDrag
@@ -323,8 +323,8 @@ createOptionsMenu()
     Menu,options_menu, Check, %tray_showgrid%
   If ShowNumbersFlag
     Menu,options_menu, Check, %tray_shownumbers%
-  If SafeMode
-    Menu,options_menu, Check, %tray_safemode%
+  ; If SafeMode
+  ;   Menu,options_menu, Check, %tray_safemode%
 }
 
 createColorsMenu()
@@ -551,7 +551,7 @@ return
     return
   }
 
-  ; Winactivate, ahk_id %window%
+  Winactivate, ahk_id %window%
   Hotkey = LButton
   GoSub, DropZoneMode
   return
@@ -600,7 +600,7 @@ MButtonMove:
     return
   }
 
-  ; Winactivate, ahk_id %window%
+  Winactivate, ahk_id %window%
   Hotkey = MButton
   GoSub, DropZoneMode
   return
