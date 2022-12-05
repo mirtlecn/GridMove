@@ -35,7 +35,8 @@
   NoTrayIcon:=False
   FirstRun:= False
   AltDragToggle := True
-  AltDragMove :=True
+  AltDragMove :=False
+  WinDragMove := True
   Gap := 1
 
   ;Registered=quebec
@@ -307,10 +308,13 @@ createOptionsMenu()
   Menu,options_menu, add, %tray_showgrid%, Options_ShowGrid
   Menu,options_menu, add, %tray_shownumbers%, Options_ShowNumbers
   Menu,options_menu, add, %tray_mbuttondrag%, Options_MButtonDrag
+  Menu,options_menu, add, %tray_windragmove%, Options_WinDragMove
   Menu,options_menu, add, %tray_altdragmove%, Options_AltDragMove
   Menu,options_menu, add, %tray_edgedrag%, Options_EdgeDrag
   Menu,options_menu, add, %tray_edgetime%, Options_EdgeTime
   Menu,options_menu, add, %tray_ini%, ShowIniFile
+  if WinDragMove
+    Menu,options_menu,check, %tray_windragmove%
   if AltDragMove
     Menu,options_menu,check, %tray_altdragmove%
   If MButtonDrag
@@ -556,7 +560,57 @@ return
   GoSub, DropZoneMode
   return
   #if
-  
+
+; win drag move
+#if WinDragMove
+~LWin & RButton::
+~RWin & RButton::
+  CoordMode,Mouse,Screen
+  MouseGetPos, OldMouseX, OldMouseY, Window,
+  WinGetTitle,WinTitle,ahk_id %Window%
+  WinGetClass,WinClass,ahk_id %Window%
+  WinGetPos,WinLeft,WinTop,WinWidth,WinHeight,ahk_id%Window%
+  WinGet,WinStyle,Style,ahk_id %Window%
+  WinGet,WindowId,Id,ahk_id %Window%
+  WinGet, WindowProcess , ProcessName, ahk_id %Window%
+
+  if SafeMode
+  {
+    if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
+    {
+      SendInput, {LWinDown}
+      Keywait, RButton
+      SendInput, {LWinUp}
+      Return
+    }
+  }
+  If Winclass in %Exceptions%
+  {
+      SendInput, {LWinDown}
+      Keywait, RButton
+      SendInput, {LWinUp}
+    Return
+  }
+  If WindowProcess in %MButtonExceptions%
+  {
+      SendInput, {LWinDown}
+      Keywait, RButton
+      SendInput, {LWinUp}
+    Return
+  }
+  KeyWait,RButton,T%MButtonTimeOut%
+  if errorlevel = 0
+  {
+    sendinput,{RButton}
+    return
+  }
+
+  Winactivate, ahk_id %window%
+  Hotkey = RButton
+  GoSub, DropZoneMode
+  return
+  #if
+
 ;*******************Mbutton method
 
 MButtonMove:
@@ -1160,6 +1214,15 @@ Options_AltDragMove:
     AltDragMove := false
   else
     AltDragMove := true
+  GoSub, WriteIni
+  reload
+return
+
+Options_WinDragMove:
+  If WinDragMove
+    WinDragMove := false
+  else
+    WinDragMove := true
   GoSub, WriteIni
   reload
 return

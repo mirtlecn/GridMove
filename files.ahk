@@ -127,6 +127,7 @@ ReadIni:
     IniRead,GridName         ,%ScriptDir%,GridSettings     ,GridName,Error
     IniRead,MButtonDrag      ,%ScriptDir%,InterfaceSettings,MButtonDrag,Error
     IniRead,AltDragMove    ,%ScriptDir%,InterfaceSettings,AltDragMove,Error
+    IniRead,WinDragMove    ,%ScriptDir%,InterfaceSettings,WinDragMove,Error
     IniRead,EdgeDrag         ,%ScriptDir%,InterfaceSettings,EdgeDrag,Error
     IniRead,EdgeTime         ,%ScriptDir%,OtherSettings    ,EdgeTime,Error
     IniRead,ShowGroupsFlag   ,%ScriptDir%,OtherSettings    ,ShowGroupsFlag,Error
@@ -156,7 +157,7 @@ ReadIni:
     If(Registered = "Error")
       Registered =
 
-    If (GridName          = "Error" OR MButtonDrag       = "Error"  OR AltDragMove = "Error"
+    If (GridName          = "Error" OR MButtonDrag       = "Error"  OR AltDragMove = "Error" OR WinDragMove = "Error"
         OR EdgeDrag       = "Error" OR EdgeTime       = "Error" OR ShowGroupsFlag    = "Error"  OR Gap = "Error"
         OR ShowGroupsFlag = "Error" OR ShowNumbersFlag   = "Error" 
         OR GridOrder      = "Error" OR UseCommand        = "Error" 
@@ -217,6 +218,7 @@ WriteIni:
   IniWrite,%GridName%         ,%ScriptDir%,GridSettings     ,GridName
   IniWrite,%MButtonDrag%      ,%ScriptDir%,InterfaceSettings,MButtonDrag
   IniWrite,%AltDragMove%      ,%ScriptDir%,InterfaceSettings,AltDragMove
+  IniWrite,%WinDragMove%      ,%ScriptDir%,InterfaceSettings,WinDragMove
   IniWrite,%EdgeDrag%         ,%ScriptDir%,InterfaceSettings,EdgeDrag
   IniWrite,%EdgeTime%         ,%ScriptDir%,OtherSettings    ,EdgeTime
   IniWrite,%ShowGroupsFlag%   ,%ScriptDir%,OtherSettings    ,ShowGroupsFlag
