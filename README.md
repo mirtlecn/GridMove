@@ -1,5 +1,7 @@
 <!-- [中文](./README_ZH.MD) -->
 
+📦Installer: [Setup.exe](https://github.com/atkepa/GridMove/releases) | [In case you are in China](http://mirtle.ysepan.com/)
+
 ## Short Description
 
 GridMove is a manual window manager on Windows.
