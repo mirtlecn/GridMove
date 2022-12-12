@@ -12,7 +12,7 @@
   MButtonDrag := True ;to be able to drag a window using the 3rd mouse button
   EdgeDrag := False ;to be able to bring the grid up when dragging a window to the edge
   EdgeTime := 500
-  ShowGroupsFlag := True ;configures the showing or not of the groups
+  ShowGroupsFlag := False ;configures the showing or not of the groups
   ShowNumbersFlag := True ;configures the showing or not of the numbers
   GridName = Grids/3 Part.grid
   GridOrder = 2 Part Vertical,Kepa
@@ -43,7 +43,7 @@
 
   ;;end of options
 
-  ScriptVersion = 2.2
+  ScriptVersion = 2.0
 
   ; Detect Windows 10
   if % substr(a_osversion, 1, 2) = 10
