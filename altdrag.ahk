@@ -1,6 +1,16 @@
-#if AltDragToggle
+; Original ahk script:
+; Easy Window Dragging (requires XP/2k/NT)
+; https://www.autohotkey.com
+; Normally, a window can only be dragged by clicking on its title bar.
+; This script extends that so that any point inside a window can be dragged.
+; To activate this mode, hold down CapsLock or the middle mouse button while
+; clicking, then drag the window to a new position.
 
-; Source  https://gist.github.com/stef-levesque/8927e17217fe2fd3e48d
+; Note: You can optionally release CapsLock or the middle mouse button after
+; pressing down the mouse button rather than holding it down the whole time.
+; This script requires v1.0.25+.
+
+#if AltDragToggle
 
 ~RWin & MButton::
 ~LWin & MButton::
