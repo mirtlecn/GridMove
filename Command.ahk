@@ -4,7 +4,7 @@
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
 Command:
-  
+
   GoSub, ShowGroups
 
 Drop_Command:
@@ -12,27 +12,27 @@ Drop_Command:
   OSDwrite("- -")
   Input,FirstNumber,I L1 T10,{esc},1,2,3,4,5,6,7,8,9,0,m,r,n,M,v,a,e
   If ErrorLevel = Max
-    {
+  {
     OSDwrite("| |")
     sleep,200
     GoSub,Command
-    }
+  }
   If (ErrorLevel = "Timeout" OR ErrorLevel = "EndKey")
-    {
+  {
     GoSub, Command_Hide
     return
-    }
-  
+  }
+
   If FirstNumber is not number
-    {
+  {
     If (FirstNumber = "M")
-      {
+    {
       winget,state,minmax,A
       if state = 1
         WinRestore,A
       else
         PostMessage, 0x112, 0xF030,,, A,
-      }
+    }
     Else If (FirstNumber = "e")
     {
       GoSub, Command_Hide
@@ -46,105 +46,105 @@ Drop_Command:
       return
     }
     Else If (FirstNumber = "V")
-      {
+    {
       GoSub, Command_Hide
       msgbox,NOT DONE!!
-;      WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,    
-;      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
+      ;      WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
+      ;      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
       return
-      }
+    }
     Else If (FirstNumber = "R")
-      {
+    {
       GoSub, Command_Hide
       Reload
-      }
+    }
     Else If FirstNumber = n
-      {
+    {
       gosub, NextGrid
       gosub, command
       return
-      }
+    }
     GoSub, Command_Hide
     return
-    }
-      
+  }
+
   If (NGroups < FirstNumber * 10)
-    {
+  {
     If (FirstNumber = "0")
-      {
+    {
       GoSub, Command_Hide
       WinMinimize,A
       return
-      }
+    }
     GoSub, Command_Hide
     MoveToGrid(FirstNumber)
     return
-    }
+  }
 
-  Command2:
+Command2:
   output := FirstNumber . " -"
   OSDwrite(Output)
   Input,SecondNumber,I L1 T2,{esc}{enter},1,2,3,4,5,6,7,8,9,0
   If ErrorLevel = Max
-    {
+  {
     OSDwrite("")
     sleep,500
     GoSub,Command2
-    }
+  }
 
   If(ErrorLevel = "Timeout")
-    {
+  {
     If (FirstNumber = "0")
-      {
+    {
       GoSub, Command_Hide
       WinMinimize,A
       return
-      }
+    }
     GoSub, Command_Hide
     MoveToGrid(FirstNumber)
     return
-    }
+  }
   If(ErrorLevel = "EndKey:enter")
-    {
+  {
     If (FirstNumber = "0")
-      {
+    {
       GoSub, Command_Hide
       WinMinimize,A
       return
-      }
+    }
     GoSub, Command_Hide
     MoveToGrid(FirstNumber)
     return
-    }
+  }
   If(ErrorLevel = "EndKey:esc")
-    {
+  {
     GoSub, Command_Hide
     return
-    }
-  
+  }
+
   If firstnumber = 0
     GridNumber := SecondNumber
   else
     GridNumber := FirstNumber . SecondNumber
   GoSub, Command_Hide
   MoveToGrid(GridNumber)
-  return    
+return
 
 OSDCreate()
-  {
+{
   global OSD
   Gui,4: +ToolWindow +AlwaysOnTop -Disabled -SysMenu -Caption
   Gui,4: Font,S13
   Gui,4: Add, Button, vOSD x0 y0 w100 h30 ,
   Gui,4: Color, EEAAEE
-  Gui,4: Show, x0 y0 w0 h0 noactivate, OSD 
+  Gui,4: Show, x0 y0 w0 h0 noactivate, OSD
   Gui,4: hide
   WinSet, TransColor, EEAAEE,OSD
   return
-  }
+}
 
 OSDWrite(Value)
-  {
+{
   Global OSD
   Global Monitor1Width
   Global Monitor1Height
@@ -156,31 +156,30 @@ OSDWrite(Value)
   Gui,4: +ToolWindow +AlwaysOnTop -Disabled -SysMenu -Caption
   Gui,4:Show, x%Xpos% y%Ypos% w100 h30 noactivate
   return
-  }
-  
+}
+
 OSDHide()
-  {
+{
   Gui,4:hide,
   return
-  }
+}
 
 MoveToGrid(GridToMove)
-  {
+{
   global
   triggerTop := %GridToMove%TriggerTop
   triggerBottom := %GridToMove%TriggerBottom
   triggerRight := %GridToMove%TriggerRight
   triggerLeft := %GridToMove%TriggerLeft
   GridBottom :=0
-  GridRight  :=0
-  GridTop    :=0
-  GridLeft   :=0
+  GridRight :=0
+  GridTop :=0
+  GridLeft :=0
 
   GridTop := %GridToMove%GridTop
   GridBottom := %GridToMove%GridBottom
   GridRight := %GridToMove%GridRight
   GridLeft := %GridToMove%GridLeft
-
 
   WinGetPos, WinLeft, WinTop, WinWidth, WinHeight,A
   WinGetClass,WinClass,A
@@ -189,16 +188,16 @@ MoveToGrid(GridToMove)
 
   if SafeMode
     if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
-      {
+    {
       Return
-      }
+    }
 
   if (WinClass = "DV2ControlHost" OR WinClass = "Progman"
-      OR Winclass = "Shell_TrayWnd")
+    OR Winclass = "Shell_TrayWnd")
     Return
 
-  If Winclass in %Exceptions%
-    Return
+  ; If Winclass in %Exceptions%
+  ;   Return
 
   If (GridTop = )
     return
@@ -210,7 +209,7 @@ MoveToGrid(GridToMove)
     if ShouldUseSizeMoveMessage(WinClass)
       SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
 
-    WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,    
+    WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
 
     if ShouldUseSizeMoveMessage(WinClass)
       SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
@@ -224,7 +223,7 @@ MoveToGrid(GridToMove)
     if ShouldUseSizeMoveMessage(WinClass)
       SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
 
-    WinMove, A, ,%GridLeft%,%WinTop%, % GridRight - GridLeft,%WinHeight%,    
+    WinMove, A, ,%GridLeft%,%WinTop%, % GridRight - GridLeft,%WinHeight%,
 
     if ShouldUseSizeMoveMessage(WinClass)
       SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
@@ -234,32 +233,32 @@ MoveToGrid(GridToMove)
 
   If (GridTop = "AlwaysOnTop")
   {
-    WinSet, AlwaysOnTop, Toggle,A 
+    WinSet, AlwaysOnTop, Toggle,A
     return
   }
-  If (GridTop =  "Maximize")
+  If (GridTop = "Maximize")
   {
     winget,state,minmax,A
     if state = 1
       WinRestore,A
     else
       PostMessage, 0x112, 0xF030,,, A,
-    return 
+    return
   }
   If (GridTop = "Run")
   {
     Run,%GridLeft% ,%GridRight%
-    return              
+    return
   }
   if (GridTop = "Restore")
   {
     data := GetWindowState(WindowId)
-    If data   
-      {
-      GridLeft  := WindowX
+    If data
+    {
+      GridLeft := WindowX
       GridRight := WindowX + WindowWidth
-      GridTop   := WindowY
-      GridBottom:= WindowY + WindowHeight 
+      GridTop := WindowY
+      GridBottom:= WindowY + WindowHeight
       WinRestore,A
 
       WinGetClass,WinClass,A
@@ -273,22 +272,22 @@ MoveToGrid(GridToMove)
         SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
 
       StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
-      }
+    }
     return
   }
   GridTop := round(GridTop)
   GridLeft := round(GridLeft)
   GridRight := round(GridRight)
   GridBottom := round(GridBottom)
-  
-if ( GridTop <> WindowHeight and GridLeft <> WindowWidth){
-  GridTop := GridTop + Gap
-  GridBottom := GridBottom - Gap
-  GridRight := GridRight - Gap
-  GridLeft := GridLeft + Gap
+
+  if ( GridTop <> WindowHeight and GridLeft <> WindowWidth){
+    GridTop := GridTop + Gap
+    GridBottom := GridBottom - Gap
+    GridRight := GridRight - Gap
+    GridLeft := GridLeft + Gap
   }
 
-  GridWidth  := GridRight - GridLeft 
+  GridWidth := GridRight - GridLeft
   GridHeight := GridBottom - GridTop
 
   WinRestore,A
@@ -308,7 +307,7 @@ if ( GridTop <> WindowHeight and GridLeft <> WindowWidth){
 
   StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
   return
-  }
+}
 
 Command_Hide:
   critical,on
@@ -316,28 +315,28 @@ Command_Hide:
   critical,off
   GoSub, HideGroups
   OSDHide()
-  return
+return
 
 DefineHotkeys:
   loop,9
   {
-     Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
-     Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
+    Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
+    Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
   }
   Hotkey, %FastMoveModifiers%0, WinHotKey
   Hotkey, %FastMoveModifiers%Numpad0, WinHotkey
   if FastMoveMeta <>
     Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
-  return 
+return
 
 WinHotkeys:
   StringRight,Number,A_ThisHotkey,1
   MoveToGrid(Number)
-  return
+return
 
 WinHotkey:
   MoveToGrid("10")
-  return
+return
 
 WinHotkeysMeta:
   GoSub, ShowGroups
@@ -346,27 +345,27 @@ WinHotkeysMeta:
   OSDwrite("- -")
   Input,FirstNumber,I L1 T10,{esc},1,2,3,4,5,6,7,8,9,0,m,r,n,M,v,a,e
   If ErrorLevel = Max
-    {
+  {
     OSDwrite("| |")
     sleep,200
     GoSub,WinHotkeysMeta
-    }
+  }
   If (ErrorLevel = "Timeout" OR ErrorLevel = "EndKey")
-    {
+  {
     GoSub, Command_Hide
     return
-    }
-  
+  }
+
   If FirstNumber is not number
-    {
+  {
     If (FirstNumber = "M")
-      {
+    {
       winget,state,minmax,A
       if state = 1
         WinRestore,A
       else
         PostMessage, 0x112, 0xF030,,, A,
-      }
+    }
     Else If (FirstNumber = "e")
     {
       GoSub, Command_Hide
@@ -380,32 +379,32 @@ WinHotkeysMeta:
       return
     }
     Else If (FirstNumber = "V")
-      {
+    {
       GoSub, Command_Hide
       msgbox,NOT DONE!!
-;      WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,    
-;      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
+      ;      WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
+      ;      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
       return
-      }
+    }
     Else If (FirstNumber = "R")
-      {
+    {
       GoSub, Command_Hide
       Reload
-      }
+    }
     Else If FirstNumber = n
-      {
+    {
       gosub, NextGrid
       gosub, command
       return
-      }
+    }
     GoSub, Command_Hide
     return
-    }
-      
+  }
+
   GoSub, Command_Hide
   FirstNumber := FirstNumber + 10
   MoveToGrid(FirstNumber)
-  return
+return
 
 MoveToPrevious:
   direction = back
@@ -450,7 +449,7 @@ MoveToNext:
     GridHeight := GridBottom - GridTop
     GridWidth := GridRight - GridLeft
 
-    if (WinTop = GridTop && WinLeft = GridLeft 
+    if (WinTop = GridTop && WinLeft = GridLeft
       && WinHeight = GridHeight && WinWidth = GridWidth)
     {
       current := a_index
@@ -575,4 +574,4 @@ MoveToNext:
     }
   }
   direction =
-  return
+return

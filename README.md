@@ -1,10 +1,8 @@
 <!-- [中文](./README_ZH.MD) -->
 
-📦Installer: [Setup.exe](https://github.com/atkepa/GridMove/releases) | [In case you are in China](http://mirtle.ysepan.com/)
-
 ## Short Description
 
-GridMove is a manual window manager on Windows.
+GridMove is a manual window manager & screen division tool on Windows.
 
 ## Long Description
 
@@ -15,17 +13,18 @@ Key features:
 - Customizable hotkeys
 - Customizable interface (grid and color)
 
-What you see here is a fork version of [JGPaiva's work](https://www.dcmembers.com/jgpaiva/)。Where is the difference : 
+What you see here is a fork version of [JGPaiva's work](https://www.dcmembers.com/jgpaiva/):
+
 - Fix large gap on windows 10+, thanks to [mr-rak](https://github.com/jgpaiva/GridMove/issues/10#issuecomment-247155758)
 - Fix `Show Grid` fucntion
 - Make the repo neat
 - Add Chinese translation
 - Add change language fucntion
-- Add alt drag function
+- Add win drag function
 - Remove welcome message
-- Deactive functions not worked well on Windows 10 +
+- Deactive functions which not worked well on Windows 10 +
 
-It is built with [AutoHotkey](http://www.autohotkey.com "AutoHotKey"), a scripting language for desktop automation for Windows.
+It is built with [AutoHotkey](http://www.autohotkey.com "AutoHotKey").
 
 ## Credit
 
