@@ -1,8 +1,27 @@
-<!-- [中文](./README_ZH.MD) -->
-
 ## Short Description
 
 GridMove is a manual window manager & screen division tool on Windows.
+
+## Install
+
+### Manual
+
+Visit release page and download GridMove Setup exe file, then double click. Or
+
+Download GridMove Portable zip file and unzip to anywhere you like.
+
+Run GridMove.exe.
+
+### [Scoop](https://scoop.sh)
+
+```
+# Gitee Source ( faster if you are in China)
+scoop install https://gitee.com/mirtle/GridMove/raw/master/GridMove.json
+
+# Or
+# GitHub Source
+scoop install https://raw.githubusercontent.com/mirtlecn/GridMove/github/GridMove.json
+```
 
 ## Long Description
 
@@ -26,6 +45,12 @@ What you see here is a fork version of [JGPaiva's work](https://www.dcmembers.co
 
 It is built with [AutoHotkey](http://www.autohotkey.com "AutoHotKey").
 
+## How to use
+
+( In Chinese )
+
+少数派 - 小巧灵活，高效可靠，Windows 快捷分屏应用：GridMove - https://sspai.com/post/75557
+
 ## Credit
 
 The repository is largly based on [JGPaiva's GridMove](https://github.com/jgpaiva/GridMove), which dates back to Feb. 2018 and has received no updates since then.
@@ -33,5 +58,3 @@ The repository is largly based on [JGPaiva's GridMove](https://github.com/jgpaiv
 GridMove is under Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License.
 
 GridMove.ico is from https://icons8.com/
-
-
