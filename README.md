@@ -45,11 +45,15 @@ What you see here is a fork version of [JGPaiva's work](https://www.dcmembers.co
 
 It is built with [AutoHotkey](http://www.autohotkey.com "AutoHotKey").
 
-## How to use
+## Usage 
 
 ( In Chinese )
 
 少数派 - 小巧灵活，高效可靠，Windows 快捷分屏应用：GridMove - https://sspai.com/post/75557
+
+## Known Bugs
+
+- https://github.com/mirtlecn/GridMove/issues/3
 
 ## Credit
 
