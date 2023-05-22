@@ -201,7 +201,7 @@ createTrayMenus()
   createTemplatesMenu()
   Menu,Tray, Add, %tray_templates%, :templates_menu
   If(NoTrayIcon){
-    msgbox,here
+    ; msgbox,here
     menu, tray, NoIcon
   }else{
     IfExist %A_ScriptDir%\gridmove.ico
