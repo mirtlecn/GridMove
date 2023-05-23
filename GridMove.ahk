@@ -43,7 +43,7 @@ Gap := 1
 
 ;;end of options
 
-ScriptVersion = 2.1
+ScriptVersion = 2.02
 
 ; Detect Windows 10
 if % substr(a_osversion, 1, 2) = 10
