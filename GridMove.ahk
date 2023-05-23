@@ -3,7 +3,7 @@
 ;date: May 2006
 
 ;fix, add some functions and translate
-;By kepa
+;By mirtle
 ;date: Nov. 2022
 
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
@@ -15,7 +15,7 @@ EdgeTime := 500
 ShowGroupsFlag := False ;configures the showing or not of the groups
 ShowNumbersFlag := True ;configures the showing or not of the numbers
 GridName = Grids/3 Part.grid
-GridOrder = 2 Part Vertical,Kepa
+GridOrder = 2 Part Vertical,3 Part
 UseCommand := False
 CommandHotkey = !g
 UseFastMove := False

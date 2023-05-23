@@ -371,7 +371,7 @@ return
 
 
 Template-3part:
-  Menu,Templates,DeleteAll
+  Menu,templates_menu,DeleteAll
   CreateTemplatesMenu() 
 
   SysGet, MonitorCount, MonitorCount
