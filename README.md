@@ -15,12 +15,11 @@ Run GridMove.exe.
 ### [Scoop](https://scoop.sh)
 
 ```
-# Gitee Source ( faster if you are in China)
-scoop install https://gitee.com/mirtle/GridMove/raw/master/GridMove.json
+# Add bucket
+scoop bucket add mirtle https://github.com/mirtlecn/scoop-bucket
 
-# Or
-# GitHub Source
-scoop install https://raw.githubusercontent.com/mirtlecn/GridMove/github/GridMove.json
+# Install
+scoop install mirtle/gridmove
 ```
 
 ## Long Description
