@@ -1739,10 +1739,10 @@ loadAero()
   return true
 }
 
-#include files.ahk
-#include command.ahk
-#include calc.ahk
+#include Files.ahk
+#include Command.ahk
+#include Calc.ahk
 #Include Aero_lib.ahk
-#include strings.ahk
-#Include altdrag.ahk
+#include Strings.ahk
+#Include WinDrag.ahk
 
