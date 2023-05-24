@@ -50,7 +50,8 @@ Source: "Installer\Grids\*"; DestDir: "{app}\Grids"; Flags: ignoreversion recurs
 Source: "Installer\GridsExample\*"; DestDir: "{app}\GridsExample"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Installer\EULA.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
 Source: "Installer\GridMove.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Installer\iconSource.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
+Source: "Installer\ICON.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
+Source: "Installer\LICENSE.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
 Source: "Installer\Images\*"; DestDir: "{app}\Images"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Installer\Plugins\*"; DestDir: "{app}\Plugins"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
