@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "GridMove"
-#define MyAppVersion "2.02"
+#define MyAppVersion "2.03"
 #define MyAppPublisher "DonationCoder and Mirtle"
 #define MyAppURL "https://github.com/mirtlecn/GridMove"
 #define MyAppExeName "GridMove.exe"
@@ -11,7 +11,7 @@
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
-; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
+; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in builds for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{94A8BC0D-082E-4E27-A898-309A1F69D1A6}
 AppName={#MyAppName}
@@ -25,13 +25,13 @@ DefaultDirName={autopf}\{#MyAppName}
 ChangesAssociations=yes
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile=Installer\EULA.txt
+LicenseFile=build\EULA.txt
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=Installer
+OutputDir=build
 OutputBaseFilename=GridMove-Setup
-SetupIconFile=Installer\GridMove.ico
+SetupIconFile=build\GridMove.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -45,15 +45,14 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "Installer\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Installer\Grids\*"; DestDir: "{app}\Grids"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Installer\GridsExample\*"; DestDir: "{app}\GridsExample"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Installer\EULA.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
-Source: "Installer\GridMove.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Installer\ICON.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
-Source: "Installer\LICENSE.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
-Source: "Installer\Images\*"; DestDir: "{app}\Images"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Installer\Plugins\*"; DestDir: "{app}\Plugins"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "build\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\Grids\*"; DestDir: "{app}\Grids"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "build\EULA.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
+Source: "build\GridMove.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\ICON.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
+Source: "build\LICENSE.txt"; DestDir: "{app}\Documents"; Flags: ignoreversion
+Source: "build\Images\*"; DestDir: "{app}\Images"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "build\Plugins\*"; DestDir: "{app}\Plugins"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]

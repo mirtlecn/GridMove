@@ -43,7 +43,7 @@ Gap := 1
 
 ;;end of options
 
-ScriptVersion = 2.02
+ScriptVersion = 2.03
 
 ; Detect Windows 10
 if % substr(a_osversion, 1, 2) = 10
@@ -505,49 +505,49 @@ return
 ;*******************AltDrag method
 #if AltDragMove && GetKeyState("Shift", "P")
   ~LWin & LButton::
-  CoordMode,Mouse,Screen
-  MouseGetPos, OldMouseX, OldMouseY, Window,
-  WinGetTitle,WinTitle,ahk_id %Window%
-  WinGetClass,WinClass,ahk_id %Window%
-  WinGetPos,WinLeft,WinTop,WinWidth,WinHeight,ahk_id%Window%
-  WinGet,WinStyle,Style,ahk_id %Window%
-  WinGet,WindowId,Id,ahk_id %Window%
-  WinGet, WindowProcess , ProcessName, ahk_id %Window%
+    CoordMode,Mouse,Screen
+    MouseGetPos, OldMouseX, OldMouseY, Window,
+    WinGetTitle,WinTitle,ahk_id %Window%
+    WinGetClass,WinClass,ahk_id %Window%
+    WinGetPos,WinLeft,WinTop,WinWidth,WinHeight,ahk_id%Window%
+    WinGet,WinStyle,Style,ahk_id %Window%
+    WinGet,WindowId,Id,ahk_id %Window%
+    WinGet, WindowProcess , ProcessName, ahk_id %Window%
 
-  if SafeMode
-  {
-    if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
+    if SafeMode
+    {
+      if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
+      {
+        sendinput,{LWindown}
+        Keywait, LButton
+        sendinput,{Lwinup}
+        Return
+      }
+    }
+    If Winclass in %Exceptions%
     {
       sendinput,{LWindown}
       Keywait, LButton
       sendinput,{Lwinup}
       Return
     }
-  }
-  If Winclass in %Exceptions%
-  {
-    sendinput,{LWindown}
-    Keywait, LButton
-    sendinput,{Lwinup}
-    Return
-  }
-  If WindowProcess in %MButtonExceptions%
-  {
-    sendinput,{LWindown}
-    Keywait, LButton
-    sendinput,{Lwinup}
-    Return
-  }
-  KeyWait,LButton,T%MButtonTimeOut%
-  if errorlevel = 0
-  {
-    sendinput,{LButton}
-    return
-  }
+    If WindowProcess in %MButtonExceptions%
+    {
+      sendinput,{LWindown}
+      Keywait, LButton
+      sendinput,{Lwinup}
+      Return
+    }
+    KeyWait,LButton,T%MButtonTimeOut%
+    if errorlevel = 0
+    {
+      sendinput,{LButton}
+      return
+    }
 
-  Winactivate, ahk_id %window%
-  Hotkey = LButton
-  GoSub, DropZoneMode
+    Winactivate, ahk_id %window%
+    Hotkey = LButton
+    GoSub, DropZoneMode
   return
 #if
 
@@ -555,49 +555,49 @@ return
 #if WinDragMove
   ~LWin & RButton::
   ~RWin & RButton::
-  CoordMode,Mouse,Screen
-  MouseGetPos, OldMouseX, OldMouseY, Window,
-  WinGetTitle,WinTitle,ahk_id %Window%
-  WinGetClass,WinClass,ahk_id %Window%
-  WinGetPos,WinLeft,WinTop,WinWidth,WinHeight,ahk_id%Window%
-  WinGet,WinStyle,Style,ahk_id %Window%
-  WinGet,WindowId,Id,ahk_id %Window%
-  WinGet, WindowProcess , ProcessName, ahk_id %Window%
+    CoordMode,Mouse,Screen
+    MouseGetPos, OldMouseX, OldMouseY, Window,
+    WinGetTitle,WinTitle,ahk_id %Window%
+    WinGetClass,WinClass,ahk_id %Window%
+    WinGetPos,WinLeft,WinTop,WinWidth,WinHeight,ahk_id%Window%
+    WinGet,WinStyle,Style,ahk_id %Window%
+    WinGet,WindowId,Id,ahk_id %Window%
+    WinGet, WindowProcess , ProcessName, ahk_id %Window%
 
-  if SafeMode
-  {
-    if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
+    if SafeMode
+    {
+      if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
+      {
+        SendInput, {LWinDown}
+        Keywait, RButton
+        SendInput, {LWinUp}
+        Return
+      }
+    }
+    If Winclass in %Exceptions%
     {
       SendInput, {LWinDown}
       Keywait, RButton
       SendInput, {LWinUp}
       Return
     }
-  }
-  If Winclass in %Exceptions%
-  {
-    SendInput, {LWinDown}
-    Keywait, RButton
-    SendInput, {LWinUp}
-    Return
-  }
-  If WindowProcess in %MButtonExceptions%
-  {
-    SendInput, {LWinDown}
-    Keywait, RButton
-    SendInput, {LWinUp}
-    Return
-  }
-  KeyWait,RButton,T%MButtonTimeOut%
-  if errorlevel = 0
-  {
-    sendinput,{RButton}
-    return
-  }
+    If WindowProcess in %MButtonExceptions%
+    {
+      SendInput, {LWinDown}
+      Keywait, RButton
+      SendInput, {LWinUp}
+      Return
+    }
+    KeyWait,RButton,T%MButtonTimeOut%
+    if errorlevel = 0
+    {
+      sendinput,{RButton}
+      return
+    }
 
-  Winactivate, ahk_id %window%
-  Hotkey = RButton
-  GoSub, DropZoneMode
+    Winactivate, ahk_id %window%
+    Hotkey = RButton
+    GoSub, DropZoneMode
   return
 #if
 

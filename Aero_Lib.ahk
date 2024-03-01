@@ -19,8 +19,8 @@ Aero_ChangeFrameAreaAll() ; Extend the Frame Area into the whole Client Area. ; 
 Aero_GuiChangeFrameAreaAll() ; Extend the Frame Area into the whole Client Area. ; Line: 316
 Aero_GetDWMColor() ; Gets the Color of the current DWM options. ; Line: 337
 Aero_GetDWMTrans() ; Gets the Transparent of the Current DWM options. ; Line: 362
-Aero_SetDWMColor() ; Set´s the DWM Window Color. ; Line: 389
-Aero_SetTrans() ; Set´s the DWM Transparent value. ; Line: 416
+Aero_SetDWMColor() ; Setï¿½s the DWM Window Color. ; Line: 389
+Aero_SetTrans() ; Setï¿½s the DWM Transparent value. ; Line: 416
 Aero_DrawPicture() ; Draws a Picture onto a DWM Gui. ; Line: 454
 Aero_CreateBuffer() ; Creates a buffer from a Handle. ; Line: 481
 Aero_CreateGuiBuffer() ; Creates a buffer from a GuiCount. ; Line: 502
@@ -47,7 +47,7 @@ Aero_End() ; Unload the dll Files. ; Line: 805
 ; Load important dll Files for more perfomance.
 ;
 ;
-; Return: Module Id´s (splittet with "|") (or false if OS is not compatible)
+; Return: Module Idï¿½s (splittet with "|") (or false if OS is not compatible)
 ;
 Aero_StartUp(){
 	global
@@ -141,10 +141,10 @@ Aero_BlurWindow(hwndWin ,enableBool=1 ,region=0){
 	Else
 		dwmConstant:=0x00000001 ;DWM_BB_ENABLE
 	VarSetCapacity(DWM_BLURBEHIND,16)
-		NumPut(dwmConstant,&DWM_BLURBEHIND,0,"UInt")
-		NumPut(enableBool,&DWM_BLURBEHIND,4,"UInt")
-		NumPut(region,&DWM_BLURBEHIND,8,"UInt")
-		NumPut(False,&DWM_BLURBEHIND,12,"UInt")
+	NumPut(dwmConstant,&DWM_BLURBEHIND,0,"UInt")
+	NumPut(enableBool,&DWM_BLURBEHIND,4,"UInt")
+	NumPut(region,&DWM_BLURBEHIND,8,"UInt")
+	NumPut(False,&DWM_BLURBEHIND,12,"UInt")
 	DllCall("dwmapi\DwmEnableBlurBehindWindow","UInt",hwndWin,"UInt",&DWM_BLURBEHIND)
 	Return,A_LastError
 }
@@ -180,10 +180,10 @@ Aero_GuiBlurWindow(GuiNum="default" ,enableBool=1 ,region=0){
 	Else
 		dwmConstant:=0x00000001 ;DWM_BB_ENABLE
 	VarSetCapacity(DWM_BLURBEHIND,16)
-		NumPut(dwmConstant,&DWM_BLURBEHIND,0,"UInt")
-		NumPut(enableBool,&DWM_BLURBEHIND,4,"UInt")
-		NumPut(region,&DWM_BLURBEHIND,8,"UInt")
-		NumPut(False,&DWM_BLURBEHIND,12,"UInt")
+	NumPut(dwmConstant,&DWM_BLURBEHIND,0,"UInt")
+	NumPut(enableBool,&DWM_BLURBEHIND,4,"UInt")
+	NumPut(region,&DWM_BLURBEHIND,8,"UInt")
+	NumPut(False,&DWM_BLURBEHIND,12,"UInt")
 	Gui, % ((GuiNum="default") ? "" : GuiNum ":") "+LastFound"
 	DllCall("dwmapi\DwmEnableBlurBehindWindow","UInt",WinExist(),"UInt",&DWM_BLURBEHIND)
 	Return,A_LastError
@@ -222,10 +222,10 @@ Aero_ChangeFrameArea(hwndWin, leftPos=0, rightPos=0, topPos=0, bottomPos=0){
 	If(!MODULEID)
 		Aero_StartUp()
 	VarSetCapacity(_MARGINS,16)
-		NumPut(leftPos,&_MARGINS,0,"UInt")
-		NumPut(rightPos,&_MARGINS,4,"UInt")
-		NumPut(topPos,&_MARGINS,8,"UInt")
-		NumPut(bottomPos,&_MARGINS,12,"UInt")
+	NumPut(leftPos,&_MARGINS,0,"UInt")
+	NumPut(rightPos,&_MARGINS,4,"UInt")
+	NumPut(topPos,&_MARGINS,8,"UInt")
+	NumPut(bottomPos,&_MARGINS,12,"UInt")
 	DllCall("dwmapi\DwmExtendFrameIntoClientArea", "UInt", hwndWin, "UInt", &_MARGINS)
 	Return,A_LastError
 }
@@ -263,10 +263,10 @@ Aero_GuiChangeFrameArea(GuiNum="default", leftPos=0, rightPos=0, topPos=0, botto
 	If(!MODULEID)
 		Aero_StartUp()
 	VarSetCapacity(_MARGINS,16)
-		NumPut(leftPos,&_MARGINS,0,"UInt")
-		NumPut(rightPos,&_MARGINS,4,"UInt")
-		NumPut(topPos,&_MARGINS,8,"UInt")
-		NumPut(bottomPos,&_MARGINS,12,"UInt")
+	NumPut(leftPos,&_MARGINS,0,"UInt")
+	NumPut(rightPos,&_MARGINS,4,"UInt")
+	NumPut(topPos,&_MARGINS,8,"UInt")
+	NumPut(bottomPos,&_MARGINS,12,"UInt")
 	Gui, % ((GuiNum="default") ? "" : GuiNum ":") "+LastFound"
 	DllCall("dwmapi\DwmExtendFrameIntoClientArea", "UInt", WinExist(), "UInt", &_MARGINS)
 	Return,A_LastError
@@ -348,7 +348,6 @@ Aero_GetDWMColor(){
 }
 ;============================================================================
 
-
 ;============================================================================
 ; Funktion
 ; Api Name: DwmGetColorizationColor (dwmapi.dll)
@@ -370,14 +369,13 @@ Aero_GetDWMTrans(){
 }
 ;============================================================================
 
-
 ;============================================================================
 ; Funktion
 ; Api Name: none ()
 ;
 ; Aero_SetDWMColor()
 ;
-; Set´s the DWM Window Color.
+; Setï¿½s the DWM Window Color.
 ;
 ; Params:
 ;
@@ -404,7 +402,7 @@ Aero_SetDWMColor(dwmColor=0x910047ab){
 ;
 ; Aero_SetTrans()
 ;
-; Set´s the DWM Transparent value.
+; Setï¿½s the DWM Transparent value.
 ;
 ; Params:
 ;
@@ -461,7 +459,6 @@ Aero_DrawPicture(hwnd,picturePath,xPos=0,yPos=0,autoUpdate=1){
 	Return,hBuffer
 }
 ;============================================================================
-
 
 ;============================================================================
 ; Funktion
@@ -687,8 +684,8 @@ Aero_ClearBuffer(hBuffer){
 	hBitmap := DllCall("GetCurrentObject", "uint", hBuffer, "uint", 7)
 	DllCall("GetObject", "uInt", hBitmap "uInt", 24, "uInt", &Img)
 	VarSetCapacity(rect, 16, 0)
-		NumPut(((NumGet(Img, 4)=0) ? A_ScreenWidth : NumGet(Img, 4)), rect, 8, "int")
-		NumPut(((NumGet(Img, 8)=0) ? A_ScreenHeight : NumGet(Img, 8)), rect, 12, "int")
+	NumPut(((NumGet(Img, 4)=0) ? A_ScreenWidth : NumGet(Img, 4)), rect, 8, "int")
+	NumPut(((NumGet(Img, 8)=0) ? A_ScreenHeight : NumGet(Img, 8)), rect, 12, "int")
 	hBrush := DllCall("CreateSolidBrush", "uint", 0)
 	retval := DllCall("FillRect", "uint", hBuffer, "uint", &rect, "uint", hBrush)
 	DllCall("DeleteObject", "uint", hBrush)
@@ -715,7 +712,7 @@ Aero_LoadImage(Filename){
 	DllCall("LoadLibrary", "str", "gdiplus")
 	VarSetCapacity(pGdiplusToken, 4, 0)
 	VarSetCapacity(pGdiplusInput, 16, 0)
-		NumPut(1, pGdiplusInput)
+	NumPut(1, pGdiplusInput)
 	DllCall("gdiplus\GdiplusStartup", "uint", &pGdiplusToken, "uint", &pGdiplusInput, "uint", 0)
 	Aero_MultibyteToWide(Filename, WideFilename)
 	DllCall("gdiplus\GdipCreateBitmapFromFile", "uint", &WideFilename, "uint*", GdiplusBitmap)
@@ -777,7 +774,7 @@ Aero_DeleteImage(byref hImage){
 ; Return: Selected Buffer.
 ;
 Aero_DrawImage(hBuffer, hImage, x=0, y=0, alpha=0xFF){
-	If (hImage = 0)	
+	If (hImage = 0)
 		Return 0
 	hBufferSrc := DllCall("CreateCompatibleDC", "uint", hBuffer)
 	DllCall("SelectObject", "uint", hBufferSrc, "uint", hImage)
@@ -809,14 +806,14 @@ Aero_End(MODUELIDPARAM_=""){
 		StringSplit,MODULEIDARRAY,MODULEID,% "|"
 		Loop,%MODULEIDARRAY0%
 			DllCall("FreeLibary", "Uint", MODULEIDARRAY%A_Index%)
-		Return,True	
+		Return,True
 	}Else{
 		If(MODULEID)
 		{
 			StringSplit,MODULEIDARRAY,MODULEID,% "|"
 			Loop,%MODULEIDARRAY0%
 				DllCall("FreeLibary", "Uint", MODULEIDARRAY%A_Index%)
-			Return,True	
+			Return,True
 		}Else{
 			MsgBox, 4144, DWM Stop, No Loaded Libarys found.`n`nAero_End() fail !
 			Return,False
@@ -824,7 +821,6 @@ Aero_End(MODUELIDPARAM_=""){
 	}
 }
 ;============================================================================
-
 
 ;============================================================================
 ;============================================================================
@@ -834,127 +830,126 @@ Aero_End(MODUELIDPARAM_=""){
 ;============================================================================
 Aero_CreateBufferFromBuffer(hBuffer)
 {
-  hNewBuffer := DllCall("CreateCompatibleDC", "uint", hBuffer)
-  if (hBufferOut=0)
-    Return 0
-  w := DllCall("GetDeviceCaps", "uint", hBuffer, "int", 8)
-  h := DllCall("GetDeviceCaps", "uint", hBuffer, "int", 10)
-  VarSetCapacity(bmi, 40, 0)
-  NumPut(40, bmi, 0, "uint")
-  NumPut(((w=0) ? A_ScreenWidth : w), bmi, 4, "int")
-  NumPut(((h=0) ? A_ScreenHeight : h), bmi, 8, "int")
-  NumPut(1, bmi, 12, "ushort")
-  NumPut(32, bmi, 14, "ushort")
-  hBitmap := DllCall("CreateDIBSection", "uint", hBuffer, "uint", &bmi, "uint", 0, "uint*", diBits, "uint", 0, "uint", 0)
-  if (hBitmap=0)
-    Return 0
-  DllCall("SelectObject", "uint", hNewBuffer, "uint", hBitmap)
-  Return hNewBuffer
+	hNewBuffer := DllCall("CreateCompatibleDC", "uint", hBuffer)
+	if (hBufferOut=0)
+		Return 0
+	w := DllCall("GetDeviceCaps", "uint", hBuffer, "int", 8)
+	h := DllCall("GetDeviceCaps", "uint", hBuffer, "int", 10)
+	VarSetCapacity(bmi, 40, 0)
+	NumPut(40, bmi, 0, "uint")
+	NumPut(((w=0) ? A_ScreenWidth : w), bmi, 4, "int")
+	NumPut(((h=0) ? A_ScreenHeight : h), bmi, 8, "int")
+	NumPut(1, bmi, 12, "ushort")
+	NumPut(32, bmi, 14, "ushort")
+	hBitmap := DllCall("CreateDIBSection", "uint", hBuffer, "uint", &bmi, "uint", 0, "uint*", diBits, "uint", 0, "uint", 0)
+	if (hBitmap=0)
+		Return 0
+	DllCall("SelectObject", "uint", hNewBuffer, "uint", hBitmap)
+	Return hNewBuffer
 }
 ;============================================================================
 Aero_AutoRepaintCallback(wParam, lParam, msg, hWnd)
 {
-  static
-  SetFormat, Integer, h
-  hWnd += 0
-  SetFormat, Integer, d
-  if (msg="register")
-  {
-    Buffer%hWnd% := wParam
-    Return Aero_UpdateWindow(hWnd, wParam)
-  }
-  if ((Buffer%hWnd%!=""))
-  {
-    Aero_UpdateWindow(hWnd, Buffer%hWnd%)
-    SendMessage, % msg, % wParam, % lParam,, ahk_id %hWnd%
-    Return errorlevel
-  }
-  SendMessage, % msg, % wParam, % lParam,, ahk_id %hWnd%
-  Return errorlevel
+	static
+	SetFormat, Integer, h
+	hWnd += 0
+	SetFormat, Integer, d
+	if (msg="register")
+	{
+		Buffer%hWnd% := wParam
+		Return Aero_UpdateWindow(hWnd, wParam)
+	}
+	if ((Buffer%hWnd%!=""))
+	{
+		Aero_UpdateWindow(hWnd, Buffer%hWnd%)
+		SendMessage, % msg, % wParam, % lParam,, ahk_id %hWnd%
+		Return errorlevel
+	}
+	SendMessage, % msg, % wParam, % lParam,, ahk_id %hWnd%
+	Return errorlevel
 }
 ;============================================================================
 Aero_AlphaBlend(hBufferDst, hBufferSrc, x=0, y=0, alpha=0xFF)
 {
-  VarSetCapacity(ImgSrc, 24, 0)
-  VarSetCapacity(ImgDst, 24, 0)
-  hBitmapSrc := DllCall("GetCurrentObject", "uint", hBufferSrc, "uint", 7)
-  hBitmapDst := DllCall("GetCurrentObject", "uint", hBufferDst, "uint", 7)
-  DllCall("GetObject", "uInt", hBitmapSrc, "uInt", 24, "uInt", &ImgSrc)
-  DllCall("GetObject", "uInt", hBitmapDst, "uInt", 24, "uInt", &ImgDst)
-  w := ((NumGet(ImgSrc, 4)<=NumGet(ImgDst, 4)) ? NumGet(ImgSrc, 4) : NumGet(ImgDst, 4))
-  h := ((NumGet(ImgSrc, 8)<=NumGet(ImgDst, 8)) ? NumGet(ImgSrc, 8) : NumGet(ImgDst, 8))
-  alpha := ((alpha>0xFF) ? 0xFF : (alpha<0) ? 0 : alpha)
-  Return DllCall("GdiAlphaBlend", "uint", hBufferDst, "int", x, "int", y, "int", w, "int", h, "uint", hBufferSrc
-      , "int", 0, "int", 0, "int", w, "int", h, "uint", 0x01000000 | (alpha*0x10000))
+	VarSetCapacity(ImgSrc, 24, 0)
+	VarSetCapacity(ImgDst, 24, 0)
+	hBitmapSrc := DllCall("GetCurrentObject", "uint", hBufferSrc, "uint", 7)
+	hBitmapDst := DllCall("GetCurrentObject", "uint", hBufferDst, "uint", 7)
+	DllCall("GetObject", "uInt", hBitmapSrc, "uInt", 24, "uInt", &ImgSrc)
+	DllCall("GetObject", "uInt", hBitmapDst, "uInt", 24, "uInt", &ImgDst)
+	w := ((NumGet(ImgSrc, 4)<=NumGet(ImgDst, 4)) ? NumGet(ImgSrc, 4) : NumGet(ImgDst, 4))
+	h := ((NumGet(ImgSrc, 8)<=NumGet(ImgDst, 8)) ? NumGet(ImgSrc, 8) : NumGet(ImgDst, 8))
+	alpha := ((alpha>0xFF) ? 0xFF : (alpha<0) ? 0 : alpha)
+	Return DllCall("GdiAlphaBlend", "uint", hBufferDst, "int", x, "int", y, "int", w, "int", h, "uint", hBufferSrc
+		, "int", 0, "int", 0, "int", w, "int", h, "uint", 0x01000000 | (alpha*0x10000))
 }
 ;============================================================================
 Aero_Blit(hBufferDst, hBufferSrc, x=0, y=0)
 {
-  VarSetCapacity(ImgSrc, 24, 0)
-  VarSetCapacity(ImgDst, 24, 0)
-  hBitmapSrc := DllCall("GetCurrentObject", "uint", hBufferSrc, "uint", 7)
-  hBitmapDst := DllCall("GetCurrentObject", "uint", hBufferDst, "uint", 7)
-  DllCall("GetObject", "uInt", hBitmapSrc, "uInt", 24, "uInt", &ImgSrc)
-  DllCall("GetObject", "uInt", hBitmapDst, "uInt", 24, "uInt", &ImgDst)
-  w := ((NumGet(ImgSrc, 4)<=NumGet(ImgDst, 4)) ? NumGet(ImgSrc, 4) : NumGet(ImgDst, 4))
-  h := ((NumGet(ImgSrc, 8)<=NumGet(ImgDst, 8)) ? NumGet(ImgSrc, 8) : NumGet(ImgDst, 8))
-  Return DllCall("BitBlt", "uint", hBufferDst, "int", x, "int", y, "int", w, "int", h, "uint", hBufferSrc
-      , "int", 0, "int", 0, "uint", 0xCC0020)
+	VarSetCapacity(ImgSrc, 24, 0)
+	VarSetCapacity(ImgDst, 24, 0)
+	hBitmapSrc := DllCall("GetCurrentObject", "uint", hBufferSrc, "uint", 7)
+	hBitmapDst := DllCall("GetCurrentObject", "uint", hBufferDst, "uint", 7)
+	DllCall("GetObject", "uInt", hBitmapSrc, "uInt", 24, "uInt", &ImgSrc)
+	DllCall("GetObject", "uInt", hBitmapDst, "uInt", 24, "uInt", &ImgDst)
+	w := ((NumGet(ImgSrc, 4)<=NumGet(ImgDst, 4)) ? NumGet(ImgSrc, 4) : NumGet(ImgDst, 4))
+	h := ((NumGet(ImgSrc, 8)<=NumGet(ImgDst, 8)) ? NumGet(ImgSrc, 8) : NumGet(ImgDst, 8))
+	Return DllCall("BitBlt", "uint", hBufferDst, "int", x, "int", y, "int", w, "int", h, "uint", hBufferSrc
+		, "int", 0, "int", 0, "uint", 0xCC0020)
 }
 ;============================================================================
 Aero_MultibyteToWide(Multibyte, byref Wide)
 {
-  SizeOfString := DllCall("MultiByteToWideChar", "uInt", 0, "uInt", 0, "uInt", &Multibyte, "Int", -1, "uInt", 0, "Int", 0) * 2
-  VarSetCapacity(Wide, SizeOfString, 0)
-  Return DllCall("MultiByteToWideChar", "uInt", 0, "uInt", 0, "uInt", &Multibyte, "Int", -1, "uInt", &Wide, "uInt", SizeOfString)
+	SizeOfString := DllCall("MultiByteToWideChar", "uInt", 0, "uInt", 0, "uInt", &Multibyte, "Int", -1, "uInt", 0, "Int", 0) * 2
+	VarSetCapacity(Wide, SizeOfString, 0)
+	Return DllCall("MultiByteToWideChar", "uInt", 0, "uInt", 0, "uInt", &Multibyte, "Int", -1, "uInt", &Wide, "uInt", SizeOfString)
 }
 ;============================================================================
 
 Aero_DrawText(hBuffer, Text, x=10, y=10, color="", glowsize=14) ;BUGGY , DONT WORK , DONT USE IT
 {
-  Gui, +LastFound ;Zum verwenden des Theme
-  Aero_MultibyteToWide("CompositedWindow::Window", WideClass)
-  hTheme := DllCall("uxtheme\OpenThemeData", "uint", WinExist(), "uint", &WideClass)
-  hTmpBuffer := Aero_CreateBufferFromBuffer(hBuffer)
-  hFont := DllCall("GetCurrentObject", "uint", hBuffer, "uint", 6)
-  DllCall("SelectObject", "uint", hTmpBuffer, "uint", hFont)
-
-  VarSetCapacity(Img, 24, 0)
-  hBitmap := DllCall("GetCurrentObject", "uint", hBuffer, "uint", 7)
-  DllCall("GetObject", "uInt", hBitmap, "uint", 24, "uint", &Img)
-
-  VarSetCapacity(rect, 16, 0)
-  NumPut(x, rect, 0, "int")
-  NumPut(y, rect, 4, "int")
-  NumPut(NumGet(Img, 4)-x, rect, 8, "int")
-  NumPut(NumGet(Img, 8)-y, rect, 12, "int")
-
-  VarSetCapacity(dttopts, 64, 0)
-  NumPut(64, dttopts, 0, "uint") ;dwSize
-  NumPut(0x2800 + ((color!="") ? 1 : 0), dttopts, 4, "uint") ;dwFlags (DTT_COMPOSITED | DTT_GLOWSIZE)
-  if (color!="")
-    NumPut(((color&0xFF0000)>>16) | (color&0xFF00) | ((color&0xFF)<<16), dttopts, 8, "uint") ;RGB to BGR
-  NumPut(glowsize, dttopts, 52, "int")
-
-
-  Aero_MultibyteToWide(Text, WideText)
-  DllCall("uxtheme\DrawThemeTextEx", "uint", hTheme, "uint", hTmpBuffer, "int", 0, "int", 0, "uint", &WideText, "int", -1, "uint", 0x40000, "uint", &rect, "uint", &dttopts)
-  Aero_AlphaBlend(hBuffer, hTmpBuffer)
-  Aero_DeleteBuffer(hTmpBuffer)
+	Gui, +LastFound ;Zum verwenden des Theme
+	Aero_MultibyteToWide("CompositedWindow::Window", WideClass)
+	hTheme := DllCall("uxtheme\OpenThemeData", "uint", WinExist(), "uint", &WideClass)
+	hTmpBuffer := Aero_CreateBufferFromBuffer(hBuffer)
+	hFont := DllCall("GetCurrentObject", "uint", hBuffer, "uint", 6)
+	DllCall("SelectObject", "uint", hTmpBuffer, "uint", hFont)
+	
+	VarSetCapacity(Img, 24, 0)
+	hBitmap := DllCall("GetCurrentObject", "uint", hBuffer, "uint", 7)
+	DllCall("GetObject", "uInt", hBitmap, "uint", 24, "uint", &Img)
+	
+	VarSetCapacity(rect, 16, 0)
+	NumPut(x, rect, 0, "int")
+	NumPut(y, rect, 4, "int")
+	NumPut(NumGet(Img, 4)-x, rect, 8, "int")
+	NumPut(NumGet(Img, 8)-y, rect, 12, "int")
+	
+	VarSetCapacity(dttopts, 64, 0)
+	NumPut(64, dttopts, 0, "uint") ;dwSize
+	NumPut(0x2800 + ((color!="") ? 1 : 0), dttopts, 4, "uint") ;dwFlags (DTT_COMPOSITED | DTT_GLOWSIZE)
+	if (color!="")
+		NumPut(((color&0xFF0000)>>16) | (color&0xFF00) | ((color&0xFF)<<16), dttopts, 8, "uint") ;RGB to BGR
+	NumPut(glowsize, dttopts, 52, "int")
+	
+	Aero_MultibyteToWide(Text, WideText)
+	DllCall("uxtheme\DrawThemeTextEx", "uint", hTheme, "uint", hTmpBuffer, "int", 0, "int", 0, "uint", &WideText, "int", -1, "uint", 0x40000, "uint", &rect, "uint", &dttopts)
+	Aero_AlphaBlend(hBuffer, hTmpBuffer)
+	Aero_DeleteBuffer(hTmpBuffer)
 }
 
 Aero_UseFont(hWnd, hBuffer)
 {
-  hDC := DllCall("GetDC", "uint", hWnd)
-  hFont := DllCall("GetCurrentObject", "uint", hDC, "uint", 6)
-  DllCall("SelectObject", "uint", hBuffer, "uint", hFont)
-  return 1
+	hDC := DllCall("GetDC", "uint", hWnd)
+	hFont := DllCall("GetCurrentObject", "uint", hDC, "uint", 6)
+	DllCall("SelectObject", "uint", hBuffer, "uint", hFont)
+	return 1
 }
 
 Aero_UseGuiFont(hBuffer, GuiNum="default")
 {
-  Gui, % ((GuiNum="default") ? "" : GuiNum ":") "+LastFound"
-  return Aero_UseFont(WinExist(), hBuffer)
+	Gui, % ((GuiNum="default") ? "" : GuiNum ":") "+LastFound"
+	return Aero_UseFont(WinExist(), hBuffer)
 }
 
 IDE_DrawTransImage(hwnd,Path="")
