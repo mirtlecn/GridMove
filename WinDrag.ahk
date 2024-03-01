@@ -10,10 +10,8 @@
 ; pressing down the mouse button rather than holding it down the whole time.
 ; This script requires v1.0.25+.
 
-#if AltDragToggle
-
-    ~RWin & MButton::
-    ~LWin & MButton::
+#if AltDragToggle && GetKeyState("F16","P")
+    MButton::
         CoordMode, Mouse
         MouseGetPos, , , win
         WinGetClass,aClass,ahk_id %win%
@@ -22,8 +20,7 @@
         WinClose, ahk_id %win%
     return
 
-    ~RWin & LButton::
-    ~LWin & LButton::
+    LButton::
         CoordMode, Mouse ; Switch to screen/absolute coordinates.
         MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
         ; except Windows desktop and windows basic UI ( like windows search and control panel)
@@ -66,6 +63,7 @@
         EWD_MouseStartX := EWD_MouseX ; Update for the next timer-call to this subroutine.
         EWD_MouseStartY := EWD_MouseY
     return
+
     ResetWindowToNormal(winId) {
         WinGet, winState, MinMax, ahk_id %winId%
         if winState = 1 ; 1 means maximized

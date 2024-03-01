@@ -320,13 +320,13 @@ return
 DefineHotkeys:
   loop,9
   {
-    Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
-    Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
+    Hotkey, %FastMoveModifiers% & %A_Index%, WinHotkeys
+    Hotkey, %FastMoveModifiers% & Numpad%A_Index%, WinHotkeys
   }
-  Hotkey, %FastMoveModifiers%0, WinHotKey
-  Hotkey, %FastMoveModifiers%Numpad0, WinHotkey
+  Hotkey, %FastMoveModifiers% & 0, WinHotKey
+  Hotkey, %FastMoveModifiers% & Numpad0, WinHotkey
   if FastMoveMeta <>
-    Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
+    Hotkey, %FastMoveModifiers% & %FastMoveMeta%, WinHotkeysMeta
 return
 
 WinHotkeys:

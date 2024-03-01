@@ -19,7 +19,7 @@ GridOrder = 2 Part Vertical,3 Part
 UseCommand := False
 CommandHotkey = !g
 UseFastMove := False
-FastMoveModifiers = !
+FastMoveModifiers = F16
 Exceptions =
 MButtonExceptions =
 MButtonTimeout = 0.3
@@ -142,9 +142,9 @@ If UseFastMove
 
 if SequentialMove
 {
-  Hotkey, %FastMoveModifiers%Right,MoveToNext
-  Hotkey, %FastMoveModifiers%Left,MoveToPrevious
-  HotKey, %FastMoveModifiers%T,NextGrid
+  Hotkey, %FastMoveModifiers% & Right,MoveToNext
+  Hotkey, %FastMoveModifiers% & Left,MoveToPrevious
+  HotKey, %FastMoveModifiers% & T,NextGrid
 }
 
 MPFlag := True
@@ -503,8 +503,8 @@ cancel:
 return
 
 ;*******************AltDrag method
-#if AltDragMove && GetKeyState("Shift", "P")
-  ~LWin & LButton::
+#if AltDragMove && GetKeyState("F16","P")
+  +LButton::
     CoordMode,Mouse,Screen
     MouseGetPos, OldMouseX, OldMouseY, Window,
     WinGetTitle,WinTitle,ahk_id %Window%
@@ -518,24 +518,15 @@ return
     {
       if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
       {
-        sendinput,{LWindown}
-        Keywait, LButton
-        sendinput,{Lwinup}
         Return
       }
     }
     If Winclass in %Exceptions%
     {
-      sendinput,{LWindown}
-      Keywait, LButton
-      sendinput,{Lwinup}
       Return
     }
     If WindowProcess in %MButtonExceptions%
     {
-      sendinput,{LWindown}
-      Keywait, LButton
-      sendinput,{Lwinup}
       Return
     }
     KeyWait,LButton,T%MButtonTimeOut%
@@ -544,7 +535,6 @@ return
       sendinput,{LButton}
       return
     }
-
     Winactivate, ahk_id %window%
     Hotkey = LButton
     GoSub, DropZoneMode
@@ -552,9 +542,8 @@ return
 #if
 
 ; win drag move
-#if WinDragMove
-  ~LWin & RButton::
-  ~RWin & RButton::
+#if WinDragMove && GetKeyState("F16","P")
+  RButton::
     CoordMode,Mouse,Screen
     MouseGetPos, OldMouseX, OldMouseY, Window,
     WinGetTitle,WinTitle,ahk_id %Window%
@@ -568,24 +557,18 @@ return
     {
       if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
       {
-        SendInput, {LWinDown}
         Keywait, RButton
-        SendInput, {LWinUp}
         Return
       }
     }
     If Winclass in %Exceptions%
     {
-      SendInput, {LWinDown}
       Keywait, RButton
-      SendInput, {LWinUp}
       Return
     }
     If WindowProcess in %MButtonExceptions%
     {
-      SendInput, {LWinDown}
       Keywait, RButton
-      SendInput, {LWinUp}
       Return
     }
     KeyWait,RButton,T%MButtonTimeOut%
