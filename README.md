@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> AHK v1 is deprecated. So this project is also deprecated.
+
 ## Short Description
 
 GridMove is a manual window manager & screen division tool on Windows.
