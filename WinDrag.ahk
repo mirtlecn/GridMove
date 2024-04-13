@@ -1,16 +1,4 @@
-; Original ahk script:
-; Easy Window Dragging (requires XP/2k/NT)
-; https://www.autohotkey.com
-; Normally, a window can only be dragged by clicking on its title bar.
-; This script extends that so that any point inside a window can be dragged.
-; To activate this mode, hold down CapsLock or the middle mouse button while
-; clicking, then drag the window to a new position.
-
-; Note: You can optionally release CapsLock or the middle mouse button after
-; pressing down the mouse button rather than holding it down the whole time.
-; This script requires v1.0.25+.
-
-#if AltDragToggle && GetKeyState("F16","P")
+#if AltDragToggle && GetKeyState("F16","P") && !(WinActive("ahk_exe vmconnect.exe") || WinActive("ahk_exe vmware.exe"))
     MButton::
         CoordMode, Mouse
         MouseGetPos, , , win
@@ -70,13 +58,14 @@
             WinRestore, ahk_id %winId%
     }
 
-    ; Check if the application is running at its maximum and reset it to normal window state
     CheckAndResetMaximizedWindow(appClass) {
         WinGet, winList, List, ahk_class %appClass%
+        MouseGetPos, , , mouseWinId  ; 获取鼠标下窗口的ID
         Loop, %winList%
         {
             this_id := winList%A_Index%
-            ResetWindowToNormal(this_id)
+            if (this_id = mouseWinId)  ; 检查当前窗口是否与鼠标下的窗口匹配
+                ResetWindowToNormal(this_id)
         }
     }
 #If
