@@ -10,15 +10,15 @@
 
 ;;options:
 MButtonDrag := True ;to be able to drag a window using the 3rd mouse button
-EdgeDrag := False ;to be able to bring the grid up when dragging a window to the edge
+EdgeDrag := True ;to be able to bring the grid up when dragging a window to the edge
 EdgeTime := 500
 ShowGroupsFlag := False ;configures the showing or not of the groups
 ShowNumbersFlag := True ;configures the showing or not of the numbers
 GridName = Grids/3 Part.grid
-GridOrder = 2 Part Vertical,3 Part
+GridOrder = 3 Part
 UseCommand := False
 CommandHotkey = !g
-UseFastMove := False
+UseFastMove := True
 FastMoveModifiers = !
 Exceptions =
 MButtonExceptions =
@@ -35,7 +35,7 @@ Language=EN
 NoTrayIcon:=False
 FirstRun:= False
 AltDragToggle := True
-AltDragMove :=False
+AltDragMove :=True
 WinDragMove := True
 Gap := 1
 
@@ -43,7 +43,7 @@ Gap := 1
 
 ;;end of options
 
-ScriptVersion = 2.03
+ScriptVersion = 2.04
 
 ; Detect Windows 10
 if % substr(a_osversion, 1, 2) = 10
