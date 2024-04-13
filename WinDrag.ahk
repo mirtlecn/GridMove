@@ -72,13 +72,14 @@
             WinRestore, ahk_id %winId%
     }
 
-    ; Check if the application is running at its maximum and reset it to normal window state
     CheckAndResetMaximizedWindow(appClass) {
         WinGet, winList, List, ahk_class %appClass%
+        MouseGetPos, , , mouseWinId  ; 获取鼠标下窗口的ID
         Loop, %winList%
         {
             this_id := winList%A_Index%
-            ResetWindowToNormal(this_id)
+            if (this_id = mouseWinId)  ; 检查当前窗口是否与鼠标下的窗口匹配
+                ResetWindowToNormal(this_id)
         }
     }
 #If
