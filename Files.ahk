@@ -6,17 +6,27 @@
 ;************************************************************************ini i/o
 ReadIni:
 
-  IfExist,%A_AppData%/GridMove/%A_ScriptName%.ini
-    ScriptDir=%A_AppData%/GridMove/%A_ScriptName%.ini
-else
-  IfExist,%A_ScriptDir%\%A_ScriptName%.ini
+  IfExist,%A_ScriptDir%\PORTABLE
   {
-    filecopy,%A_ScriptDir%\%A_ScriptName%.ini,%A_AppData%/GridMove/%A_ScriptName%.ini
-    ScriptDir=%A_AppData%/GridMove/%A_ScriptName%.ini
+    ScriptDir=%A_ScriptDir%\%A_ScriptName%.ini
   }
-  else
-  {
-    ScriptDir=%A_AppData%/GridMove/%A_ScriptName%.ini
+  else{
+    IfExist,%A_AppData%/GridMove/%A_ScriptName%.ini
+    {
+      ScriptDir=%A_AppData%/GridMove/%A_ScriptName%.ini
+    }
+    else
+    {
+      IfExist,%A_ScriptDir%\%A_ScriptName%.ini
+      {
+        filecopy,%A_ScriptDir%\%A_ScriptName%.ini,%A_AppData%/GridMove/%A_ScriptName%.ini
+        ScriptDir=%A_AppData%/GridMove/%A_ScriptName%.ini
+      }
+      else
+      {
+        ScriptDir=%A_AppData%/GridMove/%A_ScriptName%.ini
+      }
+    }
   }
 
   IfExist,%ScriptDir%
