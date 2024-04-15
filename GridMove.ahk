@@ -45,6 +45,11 @@ Gap := 1
 
 ScriptVersion = 2.04
 
+if (! A_IsAdmin){
+	Run *RunAs "%A_ScriptFullPath%"
+	ExitApp
+}
+
 ; Detect Windows 10
 if % substr(a_osversion, 1, 2) = 10
   Windows10:=True
@@ -1670,7 +1675,7 @@ StartWithWindowsToggle:
   }
   else
   {
-    FileCreateShortcut,%A_ScriptDir%/GridMove.exe,%A_startup%\GridMove.lnk
+    FileCreateShortcut,%A_ScriptFullPath%,%A_startup%\GridMove.lnk
     StartWithWindows := true
   }
 
